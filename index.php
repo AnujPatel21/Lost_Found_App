@@ -45,6 +45,23 @@
 
     <script  type="text/javascript" src="JS/website.assets_editor.js"></script>
 
+    <!-- slider -->
+    <script src="http://code.jquery.com/jquery-2.1.1.js"></script>
+    <script>
+
+        $(document).ready(function() {
+            $(".toggle-trigger").click(function() {
+                $(this).parent().nextAll('.toggle-wrap').first().toggle('slow');
+                // $(this).val("Read less");
+            });
+        });
+    </script>
+    <style>
+        .toggle-wrap{
+            display:none;
+        }
+    </style>
+    <!-- slider end -->
 </head>
 <?php
 $conn=mysqli_connect('localhost','root','');
@@ -178,61 +195,81 @@ $db=mysqli_select_db($conn, 'lostandfound') or die('Database doesnot exist');
                             $res = mysqli_query($conn, $sql);
 
                             while($row2 = mysqli_fetch_array($res)) {
-                                $id = $row2['id'];
-                                $user = $row2['user_name'];
-                                $item = $row2['lost_item'];
-                                $desc = $row2["lost_description"];
-                                $key_point = $row2['key_point'];
-                                $location = $row2['location'];
+                            $id = $row2['id'];
+                            $user = $row2['user_name'];
+                            $item = $row2['lost_item'];
+                            $desc = $row2["lost_description"];
+                            $key_point = $row2['key_point'];
+                            $location = $row2['location'];
 
-                                ?>
+                            ?>
 
-                                <div class="col-md-12">
-                        <span style="min-width: 45px" class="pull-left mb16 fa fa-thumbs-o-down fa-2x" title=""><img
+                            <div class="col-md-12">
+                        <span style="min-width: 45px; " class="pull-left mb16 fa fa-thumbs-o-down fa-2x" title=""><img
                                 src="images/thumbs-down.png" width="50" height="50" alt="thumbs down"></span>
-                                    <a href="#"><h4 class="mt0 mb0"><?php echo $item; ?></h4>
-                                        <p><?php echo $desc; ?></p>
-                                    </a>
-                                    <br/>
-                                </div>
-                                <?php
-                            }
-                            ?>
-                            <!--list of lost items end -->
-                        </div>
-                        <div class="col-md-5">
-                            <div class="col-md-12 mt16 mb16">
-                                <h3 class="mb0">Found Items</h3>
-                                <h3 class="mb0">
-                                    <br/>
-                                </h3>
+                                <a href="#"><h4 class="mt0 mb0" style="text-transform: capitalize"><?php echo $item; ?></h4>
+                                    <p style="text-transform: capitalize"><?php echo $desc; ?></p>
+                                </a>
+                                <p><a class="toggle-trigger">Read More..</a><p>
+                                    <div class="toggle-wrap" style="margin-left: 14%">
+                                        <div class="style-single">
+                                <p style="text-transform: capitalize">Key Point: <?php echo $key_point; ?></p>
+                                <p style="text-transform: capitalize">Location: <?php echo $location; ?></p>
                             </div>
-                            <!--list of found items -->
-                            <?php
-                            $sql = "SELECT * FROM found ";
-                            $res = mysqli_query($conn, $sql);
+                        </div>
+                        <br/>
 
-                            while($row2 = mysqli_fetch_array($res)) {
-                                $id = $row2['id'];
-                                $user = $row2['user_name'];
-                                $item = $row2['found_item'];
-                                $desc = $row2["found_description"];
-                                // $key_point = $row2['key_point'];
-                                $location = $row2['location'];
+                    </div>
 
-                                ?>
+                    <?php
+                    }
+                    ?>
+                    <!--list of lost items end -->
+                </div>
+                <div class="col-md-5">
+                    <div class="col-md-12 mt16 mb16">
+                        <h3 class="mb0">Found Items</h3>
+                        <h3 class="mb0">
+                            <br/>
+                        </h3>
+                    </div>
+                    <!--list of found items -->
+                    <?php
+                    $sql = "SELECT * FROM found ";
+                    $res = mysqli_query($conn, $sql);
 
-                                <div class="col-md-12">
-                                    <span style="min-width: 45px" class="pull-left mb16 fa fa-thumbs-o-up fa-2x" data-original-title="" title=""><img src="images/thumbs-up.png" width="50" height="50" alt="thumbs up"></span>
-                                    <a href="#"><h4 class="mt0 mb0"><?php echo $item;?></h4>
-                                        <p><?php echo $desc;?></p>
-                                    </a>
-                                    <br/>
-                                </div>
-                                <?php
-                            }
-                            ?>
-                            <!--list of found items end -->
+                    while($row2 = mysqli_fetch_array($res)) {
+                    $id = $row2['id'];
+                    $user = $row2['user_name'];
+                    $item = $row2['found_item'];
+                    $desc = $row2["found_description"];
+                    // $key_point = $row2['key_point'];
+                    $location = $row2['location'];
+
+                    ?>
+
+                    <div class="col-md-12">
+                        <span style="min-width: 45px" class="pull-left mb16 fa fa-thumbs-o-up fa-2x" data-original-title="" title=""><img src="images/thumbs-up.png" width="50" height="50" alt="thumbs up"></span>
+                        <a href="#"><h4 class="mt0 mb0" style="text-transform: capitalize"><?php echo $item; ?></h4>
+                            <p style="text-transform: capitalize"><?php echo $desc; ?></p>
+                        </a>
+                        <p ><a class="toggle-trigger" >Read More..</a><p>
+                            <div class="toggle-wrap" style="margin-left: 14%">
+                                <div class="style-single">
+                        <p style="text-transform: capitalize">Location: <?php echo $location; ?></p>
+
+                    </div>
+                </div>
+                <br/>
+
+
+        </div>
+
+        <?php
+
+        }
+        ?>
+        <!--list of found items end -->
 
 
                         </div>

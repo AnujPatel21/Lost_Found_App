@@ -124,7 +124,23 @@ date_default_timezone_set('America/Los_Angeles');
     </script>
     <!--**** END OF INTERACTIVE MAP JS *****-->
 
+<!-- slider -->
+    <script src="http://code.jquery.com/jquery-2.1.1.js"></script>
+    <script>
 
+        $(document).ready(function() {
+            $(".toggle-trigger").click(function() {
+                $(this).parent().nextAll('.toggle-wrap').first().toggle('slow');
+               // $(this).val("Read less");
+            });
+        });
+    </script>
+    <style>
+        .toggle-wrap{
+            display:none;
+        }
+    </style>
+    <!-- slider end -->
 </head>
 <?php
 $conn=mysqli_connect('localhost','root','');
@@ -765,13 +781,22 @@ $db=mysqli_select_db($conn, 'lostandfound') or die('Database doesnot exist');
                     ?>
 
                     <div class="col-md-12">
-                        <span style="min-width: 45px" class="pull-left mb16 fa fa-thumbs-o-down fa-2x" title=""><img
+                        <span style="min-width: 45px; " class="pull-left mb16 fa fa-thumbs-o-down fa-2x" title=""><img
                                 src="images/thumbs-down.png" width="50" height="50" alt="thumbs down"></span>
-                        <a href="#"><h4 class="mt0 mb0"><?php echo $item; ?></h4>
-                            <p><?php echo $desc; ?></p>
+                        <a href="#"><h4 class="mt0 mb0" style="text-transform: capitalize"><?php echo $item; ?></h4>
+                            <p style="text-transform: capitalize"><?php echo $desc; ?></p>
                         </a>
+                        <p><a class="toggle-trigger">Read More..</a><p>
+                        <div class="toggle-wrap" style="margin-left: 14%">
+                            <div class="style-single">
+                               <p style="text-transform: capitalize">Key Point: <?php echo $key_point; ?></p>
+                               <p style="text-transform: capitalize">Location: <?php echo $location; ?></p>
+                            </div>
+                        </div>
                         <br/>
+
                     </div>
+
                     <?php
                     }
                     ?>
@@ -801,12 +826,22 @@ $db=mysqli_select_db($conn, 'lostandfound') or die('Database doesnot exist');
 
                     <div class="col-md-12">
                         <span style="min-width: 45px" class="pull-left mb16 fa fa-thumbs-o-up fa-2x" data-original-title="" title=""><img src="images/thumbs-up.png" width="50" height="50" alt="thumbs up"></span>
-                        <a href="#"><h4 class="mt0 mb0"><?php echo $item;?></h4>
-                            <p><?php echo $desc;?></p>
+                        <a href="#"><h4 class="mt0 mb0" style="text-transform: capitalize"><?php echo $item; ?></h4>
+                            <p style="text-transform: capitalize"><?php echo $desc; ?></p>
                         </a>
-                        <br/>
+                        <p ><a class="toggle-trigger" >Read More..</a><p>
+                            <div class="toggle-wrap" style="margin-left: 14%">
+                                <div class="style-single">
+                        <p style="text-transform: capitalize">Location: <?php echo $location; ?></p>
                     </div>
+            </div>
+                        <br/>
+
+
+                    </div>
+
                     <?php
+
                 }
                 ?>
                 <!--list of found items end -->
