@@ -215,6 +215,7 @@ $db=mysqli_select_db($conn, 'lostandfound') or die('Database doesnot exist');
                                         <div class="style-single">
                                 <p style="text-transform: capitalize">Key Point: <?php echo $key_point; ?></p>
                                 <p style="text-transform: capitalize">Location: <?php echo $location; ?></p>
+                                <p><a href="#">Contact Person</a> </p>
                             </div>
                         </div>
                         <br/>
@@ -257,6 +258,7 @@ $db=mysqli_select_db($conn, 'lostandfound') or die('Database doesnot exist');
                             <div class="toggle-wrap" style="margin-left: 14%">
                                 <div class="style-single">
                         <p style="text-transform: capitalize">Location: <?php echo $location; ?></p>
+                        <p><a href="#">Contact Person</a> </p>
 
                     </div>
                 </div>
