@@ -46,6 +46,10 @@
     <script  type="text/javascript" src="JS/website.assets_editor.js"></script>
 
 </head>
+<?php
+$conn=mysqli_connect('localhost','root','');
+$db=mysqli_select_db($conn, 'lostandfound') or die('Database doesnot exist');
+?>
 <body class="o_connected_user">
 
 
@@ -157,6 +161,7 @@
                     </div>
                 </div>
             </section>
+            <!-- List lost and found -->
             <section class="s_feature_grid" style="">
                 <div class="container">
                     <div class="row">
@@ -167,25 +172,33 @@
                                     <br/>
                                 </h3>
                             </div>
-                            <div class="col-md-12">
-                                <span style="min-width: 45px" class="pull-left mb16 fa fa-thumbs-o-down fa-2x" title=""><img src="images/thumbs-down.png" width="50" height="50" alt="thumbs down"></span>
-                                <a href="#"> <h4 class="mt0 mb0">Phone</h4>
-                                    <p>Add description</p>
-                                </a>
-                                <br/>
-                            </div>
-                            <div class="col-md-12">
-                                <span style="min-width: 45px" class="pull-left mb16 fa fa-thumbs-o-down fa-2x" data-original-title="" title=""><img src="images/thumbs-down.png" width="50" height="50" alt="thumbs down"></span>
-                                <a href="#"> <h4 class="mt0 mb0">Laptop charger</h4>
-                                    <p>Add description</p></a>
-                                <br/>
-                            </div>
-                            <div class="col-md-12">
-                                <span style="min-width: 45px" class="pull-left mb16 fa fa-thumbs-o-down fa-2x"><img src="images/thumbs-down.png" width="50" height="50" alt="thumbs down"></span>
-                                <a href="#"> <h4 class="mt0 mb0">book</h4>
-                                    <p>add description</p></a>
-                                <br/>
-                            </div>
+                            <!--list of lost items -->
+                            <?php
+                            $sql = "SELECT * FROM lost";
+                            $res = mysqli_query($conn, $sql);
+
+                            while($row2 = mysqli_fetch_array($res)) {
+                                $id = $row2['id'];
+                                $user = $row2['user_name'];
+                                $item = $row2['lost_item'];
+                                $desc = $row2["lost_description"];
+                                $key_point = $row2['key_point'];
+                                $location = $row2['location'];
+
+                                ?>
+
+                                <div class="col-md-12">
+                        <span style="min-width: 45px" class="pull-left mb16 fa fa-thumbs-o-down fa-2x" title=""><img
+                                src="images/thumbs-down.png" width="50" height="50" alt="thumbs down"></span>
+                                    <a href="#"><h4 class="mt0 mb0"><?php echo $item; ?></h4>
+                                        <p><?php echo $desc; ?></p>
+                                    </a>
+                                    <br/>
+                                </div>
+                                <?php
+                            }
+                            ?>
+                            <!--list of lost items end -->
                         </div>
                         <div class="col-md-5">
                             <div class="col-md-12 mt16 mb16">
@@ -194,30 +207,39 @@
                                     <br/>
                                 </h3>
                             </div>
-                            <div class="col-md-12">
-                                <span style="min-width: 45px" class="pull-left mb16 fa fa-thumbs-o-up fa-2x" data-original-title="" title=""><img src="images/thumbs-up.png" width="50" height="50" alt="thumbs up"></span>
-                                <a href="#"><h4 class="mt0 mb0">Phone</h4>
-                                    <p>Add description</p>
-                                </a>
-                                <br/>
-                            </div>
-                            <div class="col-md-12">
-                                <span style="min-width: 45px" class="pull-left mb16 fa fa-thumbs-o-up fa-2x" data-original-title="" title=""><img src="images/thumbs-up.png" width="50" height="50" alt="thumbs up"></span>
-                                <a href="#"><h4 class="mt0 mb0">Laptop charger</h4>
-                                    <p>Add description</p>
-                                </a>
-                                <br/>
-                            </div>
-                            <div class="col-md-12">
-                                <span style="min-width: 45px" class="pull-left mb16 fa fa-thumbs-o-up fa-2x"><img src="images/thumbs-up.png" width="50" height="50" alt="thumbs up"></span>
-                                <a href="#"><h4 class="mt0 mb0">book</h4>
-                                    <p>add description</p></a>
-                                <br/>
-                            </div>
+                            <!--list of found items -->
+                            <?php
+                            $sql = "SELECT * FROM found ";
+                            $res = mysqli_query($conn, $sql);
+
+                            while($row2 = mysqli_fetch_array($res)) {
+                                $id = $row2['id'];
+                                $user = $row2['user_name'];
+                                $item = $row2['found_item'];
+                                $desc = $row2["found_description"];
+                                // $key_point = $row2['key_point'];
+                                $location = $row2['location'];
+
+                                ?>
+
+                                <div class="col-md-12">
+                                    <span style="min-width: 45px" class="pull-left mb16 fa fa-thumbs-o-up fa-2x" data-original-title="" title=""><img src="images/thumbs-up.png" width="50" height="50" alt="thumbs up"></span>
+                                    <a href="#"><h4 class="mt0 mb0"><?php echo $item;?></h4>
+                                        <p><?php echo $desc;?></p>
+                                    </a>
+                                    <br/>
+                                </div>
+                                <?php
+                            }
+                            ?>
+                            <!--list of found items end -->
+
+
                         </div>
                     </div>
                 </div>
             </section>
+            <!-- List of lost and found end -->
         </div>
 
     </main>
