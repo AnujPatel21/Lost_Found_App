@@ -125,6 +125,11 @@ date_default_timezone_set('America/Los_Angeles');
 
 
 </head>
+
+<?php
+$conn=mysqli_connect('localhost','root','');
+$db=mysqli_select_db($conn, 'lostandfound') or die('Database doesnot exist');
+?>
 <body class="o_connected_user">
 
 
@@ -303,388 +308,474 @@ date_default_timezone_set('America/Los_Angeles');
                                 <area id="SCPS" class="location" title="State College Parking Structure (SCPS)" alt="State College Parking Structure (SCPS)"
                                       shape="poly" coords=" 317,126, 339,125, 339,141, 320,143, 316,128" href="#" />
                             </map>
+
+                        <?php
+                        /*Fetch user*/
+                        if($_SESSION['login_user']!="")
+                        {
+                            $sql1= "SELECT * FROM user WHERE ID='$user_check'";
+                            $result1=mysqli_query($conn, $sql1);
+                            $row1 = mysqli_fetch_array($result1);
+                            $user =$row1["username"];
+
+                        }
+                            /* Adding found items*/
+                        if(isset($_POST['submit'])){
+
+
+
+                            $found_item = $_POST['found_item'];
+                            $desc = $_POST['desc'];
+                           // $key_point = $_POST['key_point'];
+                            $location = $_POST['location'];
+
+                            $sql = "insert into found (user_name, found_item, found_description, location) VALUES ('$user','$found_item','$desc','$location')";
+                            $result = mysqli_query($conn, $sql);
+                            if($result == 1){
+                                echo "<script language='javascript' type='text/javascript'>document.location.href ='Found_item.php';</script>";
+                            }
+                        }
+
+
+                        ?>
                         <div class="slidePanel">
                             <input type="button" class="closeButton" value="Close" />
                             <div id="divAF">
+                                <form name="found" action="" method="post">
                                 <h3>Anderson Field</h3>
-                                <label>Item Name:</label><input type="text" name="lost_item" id="lost_item">
+                                <label>Item Name:</label><input type="text" name="found_item" id="found_item">
                                 <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                 <label>Location:</label><input type="text" name="location" id="location" value="Anderson Field"><br/>
                                 <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                    </form>
 
                             </div>
                             <div id="divB">
-
+                                <form name="found" action="" method="post">
                                 <h3 style="margin-top: 20%">Bookstore/Titan Shops</h3>
-                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Item Name:</label><input type="text" name="found_item" id="found_item">
                                 <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                 <label>Location:</label><input type="text" name="location" id="location" value="Bookstore/Titan Shops"><br/>
                                 <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                    </form>
                             </div>
 
                             <div id="divBA">
-
+                                <form name="found" action="" method="post">
                                 <h3 style="margin-top: 20%">Becker Amphitheater</h3>
-                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Item Name:</label><input type="text" name="found_item" id="found_item">
                                 <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                 <label>Location:</label><input type="text" name="location" id="location" value="Becker Amphitheater"><br/>
                                 <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                    </form>
                             </div>
 
                             <div id="divCC">
-
+                                <form name="found" action="" method="post">
                                 <h3 style="margin-top: 20%">Children's Center</h3>
-                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Item Name:</label><input type="text" name="found_item" id="found_item">
                                 <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                 <label>Location:</label><input type="text" name="location" id="location" value="Children's Center"><br/>
                                 <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                    </form>
                             </div>
 
                             <div id="divCP">
-
+                                <form name="found" action="" method="post">
                                 <h3 style="margin-top: 20%">College Park</h3>
-                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Item Name:</label><input type="text" name="found_item" id="found_item">
                                 <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                 <label>Location:</label><input type="text" name="location" id="location" value="College Park"><br/>
                                 <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                    </form>
                             </div>
 
                             <div id="divCPAC">
-
+                                <form name="found" action="" method="post">
                                 <h3 style="margin-top: 20%">Clayes Performing Arts Center</h3>
-                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Item Name:</label><input type="text" name="found_item" id="found_item">
                                 <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                 <label>Location:</label><input type="text" name="location" id="location" value="Clayes Performing Arts Center"><br/>
                                 <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                    </form>
                             </div>
 
                             <div id="divCY">
-
+                                <form name="found" action="" method="post">
                                 <h3 style="margin-top: 20%">Corporation Yard</h3>
-                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Item Name:</label><input type="text" name="found_item" id="found_item">
                                 <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                 <label>Location:</label><input type="text" name="location" id="location" value="Corporation Yard"><br/>
                                 <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                    </form>
                             </div>
 
                             <div id="divCS">
-
+                                <form name="found" action="" method="post">
                                 <h3 style="margin-top: 20%">Computer Science</h3>
-                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Item Name:</label><input type="text" name="found_item" id="found_item">
                                 <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                 <label>Location:</label><input type="text" name="location" id="location" value="Computer Science"><br/>
                                 <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                    </form>
                             </div>
 
                             <div id="divDBH">
-
+                                <form name="found" action="" method="post">
                                 <h3 style="margin-top: 20%">Dan Black Hall</h3>
-                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Item Name:</label><input type="text" name="found_item" id="found_item">
                                 <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                 <label>Location:</label><input type="text" name="location" id="location" value="Dan Black Hall"><br/>
                                 <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                    </form>
                             </div>
 
                             <div id="divE">
-
+                                <form name="found" action="" method="post">
                                 <h3 style="margin-top: 20%">Engineering</h3>
-                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Item Name:</label><input type="text" name="found_item" id="found_item">
                                 <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                 <label>Location:</label><input type="text" name="location" id="location" value="Engineering"><br/>
                                 <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                    </form>
                             </div>
 
                             <div id="divEC">
-
+                                <form name="found" action="" method="post">
 
                                 <h3 style="margin-top: 20%">Education Classroom</h3>
-                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Item Name:</label><input type="text" name="found_item" id="found_item">
                                 <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                 <label>Location:</label><input type="text" name="location" id="location" value="Education Classroom"><br/>
                                 <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                    </form>
                             </div>
 
                             <div id="divEPS">
-
+                                <form name="found" action="" method="post">
                                 <h3 style="margin-top: 20%">Eastside Parking Structure</h3>
-                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Item Name:</label><input type="text" name="found_item" id="found_item">
                                 <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                 <label>Location:</label><input type="text" name="location" id="location" value="Eastside Parking Structure"><br/>
                                 <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                    </form>
                             </div>
 
                             <div id="divG">
-
+                                <form name="found" action="" method="post">
                                 <h3 style="margin-top: 20%">Golleher Alumni House</h3>
-                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Item Name:</label><input type="text" name="found_item" id="found_item">
                                 <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                 <label>Location:</label><input type="text" name="location" id="location" value="Golleher Alumni House"><br/>
                                 <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                    </form>
                             </div>
 
                             <div id="divGF">
-
+                                <form name="found" action="" method="post">
                                 <h3 style="margin-top: 20%">Goodwin Field</h3>
-                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Item Name:</label><input type="text" name="found_item" id="found_item">
                                 <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                 <label>Location:</label><input type="text" name="location" id="location" value="Goodwin Field"><br/>
                                 <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                    </form>
                             </div>
 
                             <div id="divH">
-
+                                <form name="found" action="" method="post">
                                 <h3 style="margin-top: 20%">Humanities-Social Sciences</h3>
-                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Item Name:</label><input type="text" name="found_item" id="found_item">
                                 <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                 <label>Location:</label><input type="text" name="location" id="location" value="Humanities-Social Sciences"><br/>
                                 <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                    </form>
                             </div>
 
                             <div id="divKHS">
-
+                                <form name="found" action="" method="post">
                                 <h3 style="margin-top: 20%">Kinesiology & Health Science</h3>
-                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Item Name:</label><input type="text" name="found_item" id="found_item">
                                 <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                 <label>Location:</label><input type="text" name="location" id="location" value="Kinesiology & Health Science"><br/>
                                 <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                    </form>
                             </div>
 
                             <div id="divLH">
-
+                                <form name="found" action="" method="post">
                                 <h3 style="margin-top: 20%">Langsdorf Hall</h3>
-                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Item Name:</label><input type="text" name="found_item" id="found_item">
                                 <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                 <label>Location:</label><input type="text" name="location" id="location" value="Langsdorf Hall"><br/>
                                 <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                    </form>
                             </div>
 
                             <div id="divMH">
-
+                                <form name="found" action="" method="post">
                                 <h3 style="margin-top: 20%">McCarthy Hall</h3>
-                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Item Name:</label><input type="text" name="found_item" id="found_item">
                                 <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                 <label>Location:</label><input type="text" name="location" id="location" value="McCarthy Hall"><br/>
                                 <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                    </form>
                             </div>
 
                             <div id="divP">
-
+                                <form name="found" action="" method="post">
                                 <h3 style="margin-top: 20%">Parking and Transportation</h3>
-                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Item Name:</label><input type="text" name="found_item" id="found_item">
                                 <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                 <label>Location:</label><input type="text" name="location" id="location" value="Parking and Transportation"><br/>
                                 <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                    </form>
                             </div>
 
                             <div id="divRH">
-
+                                <form name="found" action="" method="post">
                                 <h3 style="margin-top: 20%">Residence Halls</h3>
-                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Item Name:</label><input type="text" name="found_item" id="found_item">
                                 <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                 <label>Location:</label><input type="text" name="location" id="location" value="Residence Halls"><br/>
                                 <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                    </form>
                             </div>
 
                             <div id="divPL">
-
+                                <form name="found" action="" method="post">
                                 <h3 style="margin-top: 20%">Pollak Library</h3>
-                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Item Name:</label><input type="text" name="found_item" id="found_item">
                                 <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                 <label>Location:</label><input type="text" name="location" id="location" value="Pollak Library"><br/>
                                 <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                    </form>
                             </div>
 
                             <div id="divRGC">
-
+                                <form name="found" action="" method="post">
                                 <h3 style="margin-top: 20%">Ruby Gerontology Center</h3>
-                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Item Name:</label><input type="text" name="found_item" id="found_item">
                                 <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                 <label>Location:</label><input type="text" name="location" id="location" value="Ruby Gerontology Center"><br/>
                                 <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                    </form>
                             </div>
 
                             <div id="divSHCC">
-
+                                <form name="found" action="" method="post">
                                 <h3 style="margin-top: 20%">Student Health and Counseling Center</h3>
-                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Item Name:</label><input type="text" name="found_item" id="found_item">
                                 <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                 <label>Location:</label><input type="text" name="location" id="location" value="Student Health and Counseling Center"><br/>
                                 <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                    </form>
                             </div>
 
                             <div id="divSGMH">
-
+                                <form name="found" action="" method="post">
                                 <h3 style="margin-top: 20%">Steven G. Mihaylo Hall</h3>
-                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Item Name:</label><input type="text" name="found_item" id="found_item">
                                 <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                 <label>Location:</label><input type="text" name="location" id="location" value="Steven G. Mihaylo Hall"><br/>
                                 <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                    </form>
                             </div>
 
                             <div id="divSH">
-
+                                <form name="found" action="" method="post">
                                 <h3 style="margin-top: 20%">Student Housing</h3>
-                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Item Name:</label><input type="text" name="found_item" id="found_item">
                                 <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                 <label>Location:</label><input type="text" name="location" id="location" value="Student Housing"><br/>
                                 <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                    </form>
                             </div>
 
                             <div id="divSRC">
-
+                                <form name="found" action="" method="post">
                                 <h3 style="margin-top: 20%">Student Rec Center</h3>
-                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Item Name:</label><input type="text" name="found_item" id="found_item">
                                 <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                 <label>Location:</label><input type="text" name="location" id="location" value="Student Rec Center"><br/>
                                 <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                    </form>
                             </div>
 
                             <div id="divTG">
-
+                                <form name="found" action="" method="post">
                                 <h3 style="margin-top: 20%">Titan Gymnasium</h3>
-                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Item Name:</label><input type="text" name="found_item" id="found_item">
                                 <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                 <label>Location:</label><input type="text" name="location" id="location" value="Titan Gymnasium"><br/>
                                 <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                    </form>
                             </div>
 
                             <div id="divTH">
-
+                                <form name="found" action="" method="post">
                                 <h3 style="margin-top: 20%">Titan House</h3>
-                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Item Name:</label><input type="text" name="found_item" id="found_item">
                                 <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                 <label>Location:</label><input type="text" name="location" id="location" value="Titan House"><br/>
                                 <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                    </form>
                             </div>
 
                             <div id="divTS">
-
+                                <form name="found" action="" method="post">
                                 <h3 style="margin-top: 20%">Titan Stadium</h3>
-                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Item Name:</label><input type="text" name="found_item" id="found_item">
                                 <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                 <label>Location:</label><input type="text" name="location" id="location" value="Titan Stadium"><br/>
                                 <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                    </form>
                             </div>
 
                             <div id="divTSU">
-
+                                <form name="found" action="" method="post">
                                 <h3 style="margin-top: 20%">Titan Student Union</h3>
-                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Item Name:</label><input type="text" name="found_item" id="found_item">
                                 <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                 <label>Location:</label><input type="text" name="location" id="location" value="Titan Student Union"><br/>
                                 <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                    </form>
                             </div>
 
                             <div id="divUH">
-
+                                <form name="found" action="" method="post">
                                 <h3 style="margin-top: 20%">University Hall</h3>
-                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Item Name:</label><input type="text" name="found_item" id="found_item">
                                 <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                 <label>Location:</label><input type="text" name="location" id="location" value="University Hall"><br/>
                                 <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                    </form>
                             </div>
 
                             <div id="divUP">
-
+                                <form name="found" action="" method="post">
                                 <h3 style="margin-top: 20%">University Police</h3>
-                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Item Name:</label><input type="text" name="found_item" id="found_item">
                                 <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                 <label>Location:</label><input type="text" name="location" id="location" value="University Police"><br/>
                                 <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                    </form>
                             </div>
 
                             <div id="divVA">
-
+                                <form name="found" action="" method="post">
                                 <h3 style="margin-top: 20%">Visual Arts</h3>
-                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Item Name:</label><input type="text" name="found_item" id="found_item">
                                 <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                 <label>Location:</label><input type="text" name="location" id="location" value="Visual Arts"><br/>
                                 <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                    </form>
                             </div>
 
                             <div id="divNPS">
-
+                                <form name="found" action="" method="post">
                                 <h3 style="margin-top: 20%">Nutwood Parking Structure</h3>
-                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Item Name:</label><input type="text" name="found_item" id="found_item">
                                 <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                 <label>Location:</label><input type="text" name="location" id="location" value="Nutwood Parking Structure"><br/>
                                 <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                    </form>
                             </div>
 
                             <div id="divSCPS">
-
+                                <form name="found" action="" method="post">
                                 <h3 style="margin-top: 20%">State College Parking Structure</h3>
-                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Item Name:</label><input type="text" name="found_item" id="found_item">
                                 <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                 <label>Location:</label><input type="text" name="location" id="location" value="State College Parking Structure"><br/>
-                                <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px"></div>
+                                <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                            </form>
+                            </div>
+
                         </div>
 
 </div>
 </p>
 
 </section>
-<section class="s_feature_grid" style="">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-5 col-md-offset-1">
-                <div class="col-md-12 mt16 mb16">
-                    <h3 class="mb0">Lost Items</h3>
-                    <h3 class="mb0">
-                        <br/>
-                    </h3>
+            <!-- List lost and found -->
+            <section class="s_feature_grid" style="">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-5 col-md-offset-1">
+                            <div class="col-md-12 mt16 mb16">
+                                <h3 class="mb0">Lost Items</h3>
+                                <h3 class="mb0">
+                                    <br/>
+                                </h3>
+                            </div>
+                            <!--list of lost items -->
+                            <?php
+                            $sql = "SELECT * FROM lost";
+                            $res = mysqli_query($conn, $sql);
+
+                            while($row2 = mysqli_fetch_array($res)) {
+                                $id = $row2['id'];
+                                $user = $row2['user_name'];
+                                $item = $row2['lost_item'];
+                                $desc = $row2["lost_description"];
+                                $key_point = $row2['key_point'];
+                                $location = $row2['location'];
+
+                                ?>
+
+                                <div class="col-md-12">
+                        <span style="min-width: 45px" class="pull-left mb16 fa fa-thumbs-o-down fa-2x" title=""><img
+                                src="images/thumbs-down.png" width="50" height="50" alt="thumbs down"></span>
+                                    <a href="#"><h4 class="mt0 mb0"><?php echo $item; ?></h4>
+                                        <p><?php echo $desc; ?></p>
+                                    </a>
+                                    <br/>
+                                </div>
+                                <?php
+                            }
+                            ?>
+                            <!--list of lost items end -->
+                        </div>
+                        <div class="col-md-5">
+                            <div class="col-md-12 mt16 mb16">
+                                <h3 class="mb0">Found Items</h3>
+                                <h3 class="mb0">
+                                    <br/>
+                                </h3>
+                            </div>
+                            <!--list of found items -->
+                            <?php
+                            $sql = "SELECT * FROM found ";
+                            $res = mysqli_query($conn, $sql);
+
+                            while($row2 = mysqli_fetch_array($res)) {
+                                $id = $row2['id'];
+                                $user = $row2['user_name'];
+                                $item = $row2['found_item'];
+                                $desc = $row2["found_description"];
+                                // $key_point = $row2['key_point'];
+                                $location = $row2['location'];
+
+                                ?>
+
+                                <div class="col-md-12">
+                                    <span style="min-width: 45px" class="pull-left mb16 fa fa-thumbs-o-up fa-2x" data-original-title="" title=""><img src="images/thumbs-up.png" width="50" height="50" alt="thumbs up"></span>
+                                    <a href="#"><h4 class="mt0 mb0"><?php echo $item;?></h4>
+                                        <p><?php echo $desc;?></p>
+                                    </a>
+                                    <br/>
+                                </div>
+                                <?php
+                            }
+                            ?>
+                            <!--list of found items end -->
+
+
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-12">
-                    <span style="min-width: 45px" class="pull-left mb16 fa fa-thumbs-o-down fa-2x" title=""><img src="images/thumbs-down.png" width="50" height="50" alt="thumbs down"></span>
-                    <a href="#"> <h4 class="mt0 mb0">Phone</h4>
-                        <p>Add description</p>
-                    </a>
-                    <br/>
-                </div>
-                <div class="col-md-12">
-                    <span style="min-width: 45px" class="pull-left mb16 fa fa-thumbs-o-down fa-2x" data-original-title="" title=""><img src="images/thumbs-down.png" width="50" height="50" alt="thumbs down"></span>
-                    <a href="#"> <h4 class="mt0 mb0">Laptop charger</h4>
-                        <p>Add description</p></a>
-                    <br/>
-                </div>
-                <div class="col-md-12">
-                    <span style="min-width: 45px" class="pull-left mb16 fa fa-thumbs-o-down fa-2x"><img src="images/thumbs-down.png" width="50" height="50" alt="thumbs down"></span>
-                    <a href="#"> <h4 class="mt0 mb0">book</h4>
-                        <p>add description</p></a>
-                    <br/>
-                </div>
-            </div>
-            <div class="col-md-5">
-                <div class="col-md-12 mt16 mb16">
-                    <h3 class="mb0">Found Items</h3>
-                    <h3 class="mb0">
-                        <br/>
-                    </h3>
-                </div>
-                <div class="col-md-12">
-                    <span style="min-width: 45px" class="pull-left mb16 fa fa-thumbs-o-up fa-2x" data-original-title="" title=""><img src="images/thumbs-up.png" width="50" height="50" alt="thumbs up"></span>
-                    <a href="#"><h4 class="mt0 mb0">Phone</h4>
-                        <p>Add description</p>
-                    </a>
-                    <br/>
-                </div>
-                <div class="col-md-12">
-                    <span style="min-width: 45px" class="pull-left mb16 fa fa-thumbs-o-up fa-2x" data-original-title="" title=""><img src="images/thumbs-up.png" width="50" height="50" alt="thumbs up"></span>
-                    <a href="#"><h4 class="mt0 mb0">Laptop charger</h4>
-                        <p>Add description</p>
-                    </a>
-                    <br/>
-                </div>
-                <div class="col-md-12">
-                    <span style="min-width: 45px" class="pull-left mb16 fa fa-thumbs-o-up fa-2x"><img src="images/thumbs-up.png" width="50" height="50" alt="thumbs up"></span>
-                    <a href="#"><h4 class="mt0 mb0">book</h4>
-                        <p>add description</p></a>
-                    <br/>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+            </section>
+            <!-- List of lost and found end -->
 </div>
 
 </main>
