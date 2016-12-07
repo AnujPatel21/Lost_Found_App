@@ -1,5 +1,16 @@
 
+<?php
+session_start();
+$user_check=$_SESSION['login_user'];
 
+if(!isset($_SESSION["login_user"])) {
+    header("Location:login.php");
+    session_destroy();
+    exit();
+}
+date_default_timezone_set('America/Los_Angeles');
+
+?>
 
 <!DOCTYPE html>
 <html lang="en-US" data-main-object="ir.ui.view(248,)" data-oe-company-name="Lost and found" data-view-xmlid="website.lost-found" data-editable="1" data-website-id="1">
@@ -8,7 +19,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-    <title>Homepage | My Website</title>
+    <title>Lost and Found</title>
     <link type="image/x-icon" rel="shortcut icon" href="/web/image/website/1/favicon/"/>
 
 
@@ -184,9 +195,10 @@
                         </li>
 
                         <li>
-                            <a href="#">
+                            <a href="logout.php">
                                 <span data-oe-model="website.menu" data-oe-id="6" data-oe-field="name" data-oe-type="char" data-oe-expression="submenu.name">Logout</span>
                             </a>
+
                         </li>
 
 
@@ -291,312 +303,323 @@
                                 <area id="SCPS" class="location" title="State College Parking Structure (SCPS)" alt="State College Parking Structure (SCPS)"
                                       shape="poly" coords=" 317,126, 339,125, 339,141, 320,143, 316,128" href="#" />
                             </map>
-                            <div class="slidePanel">
-                                <input type="button" class="closeButton" value="Close" />
-                                <div id="divAF">
-                                    <h3>Anderson Field</h3>
-                                    <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
-                                    <label>Description:</label><textarea name="desc" id="desc"></textarea>
-                                    <label>Location:</label><input type="text" name="location" id="location" value="Anderson Field"><br/>
-                                    <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                        <div class="slidePanel">
+                            <input type="button" class="closeButton" value="Close" />
+                            <div id="divAF">
+                                <h3>Anderson Field</h3>
+                                <label>Item Name:</label><input type="text" name="lost_item" id="lost_item">
+                                <label>Description:</label><textarea name="desc" id="desc"></textarea>
+                                <label>Location:</label><input type="text" name="location" id="location" value="Anderson Field"><br/>
+                                <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
 
-                                </div>
-                                <div id="divB">
-                                    <h3>Bookstore/Titan Shops</h3>
-                    <p><img src="_resources/images/titan-shop.jpg" width="250" height="167" alt="Titan Shop" /></p>
-                    <p>657-278-3418</p>
-                    <p><a href="http://www.titanbookstore.com" target="_blank">titanbookstore.com</a></p>
-                </div>
-                <div id="divBA">
-                    <h3>Becker Amphitheater</h3>
-                    <p><img src="_resources/images/Becker.jpg" width="250" height="167" alt="Becker Amphitheater" />
-                    <p>&nbsp;</p>
-                </div>
-                <div id="divCC">
-                    <h3>Children's Center</h3>
-                    <p><img src="_resources/images/childrens-center.jpg" width="250" height="167" alt="Children's Center" />
-                    <p>Phone: 657-278-2961</p>
-                    <p><a href="http://asi.fullerton.edu/cc/" target="_blank">http://asi.fullerton.edu/cc/</a></p>
-                </div>
-                <div id="divCP">
-                    <h3>College Park</h3>
-                    <p><img src="_resources/images/college-park.jpg" width="250" height="167" alt="College Park" /></p>
-                    <p>Located in this building:</p>
-                    <ul>
-                        <li><a href="http://vpadmin.fullerton.edu/" target="_blank">Administration and Finance</a></li>
-                        <li><a href="http://alp.fullerton.edu/" target="_blank">American Language Program</a></li>
-                        <li><a href="http://communications.fullerton.edu" target="_blank">College of Communications</a></li>
-                        <li><a href="http://ed.fullerton.edu" target="_blank">College of Education</a></li>
-                        <li><a href="http://extension.fullerton.edu/" target="_blank">Extended Education</a></li>
-                        <li><a href="http://hr.fullerton.edu/" target="_blank">Human Resources, Diversity and Inclusion</a></li>
-                        <li><a href="http://president.fullerton.edu" target="_blank">President's Office</a></li>
-                        <li><a href="http://www.fullerton.edu/acadaffairs/" target="_blank">Provost's Office</a></li>
-                        <li><a href="http://www.fullerton.edu/advancement" target="_blank">University Advancement</a></li>
-                    </ul>
-                </div>
-                <div id="divCPAC">
-                    <h3>Clayes Performing Arts Center</h3>
-                    <p><img src="_resources/images/PAC.jpg" width="250" height="167" alt="Clayes Performing Arts Center" /></p>
-                    <p>Located in this building:</p>
-                    <ul>
-                        <li>Meng Hall</li>
-                        <li>Jim Young Theatre</li>
-                        <li>Box Office</li>
-                        <li><a href="http://www.fullerton.edu/arts" target="_blank">College of the Arts</a></li>
-                        <li>School of Music</li>
-                        <li>Theatre and Dance Department</li>
-                    </ul>
-                </div>
-                <div id="divCY">
-                    <h3>Corporation Yard</h3>
-                    <p>Located on this grounds:</p>
-                    <ul><li>Receiving</li></ul>
+                            </div>
+                            <div id="divB">
 
-                </div>
-                <div id="divCS">
-                    <h3>Computer Science</h3>
-                    <p><img src="_resources/images/ECS.jpg" width="250" height="167" alt="ECS Building" /></p>
-                    <p>Located in this building:</p>
-                    <ul>
-                        <li><a href="http://www.fullerton.edu/ecs/" target="_blank">College of Engineering and Computer Science</a></li>
-                        <li>Computer Science Department</li>
-                        <li>Computer Engineering Department</li>
-                        <li><a href="http://motorbehaviorlab.wixsite.com/motorbehaviorlabcsuf" target="_blank">Center for Academic Support in
-                                Engineering and Computer Science</a></li>
-                    </ul>
-                </div>
-                <div id="divDBH">
-                    <h3>Dan Black Hall</h3>
-                    <p><img src="_resources/images/black-hall.jpg" width="250" height="167" alt="Dan Black Hall" /></p>
-                    <p>Located in this building:</p>
-                    <ul>
-                        <li><a href="http://nsm.fullerton.edu/" target="_blank">College of Natural Sciences and Mathematics</a></li>
-                    </ul>
-                </div>
-                <div id="divE">
-                    <h3>Engineering</h3>
-                    <p><img src="_resources/images/ECS.jpg" width="250" height="167" alt="ECS Building" /></p>
-                    <p>Located in this building:</p>
-                    <ul>
-                        <li><a href="http://www.fullerton.edu/ecs/" target="_blank">College of Engineering and Computer Science</a></li>
-                        <li>Civil Engineering Department</li>
-                        <li>Electrical Engineering Department</li>
-                    </ul>
-                </div>
-                <div id="divEC">
-                    <h3>Education Classroom</h3>
-                    <p><img src="_resources/images/education-classroom.jpg" width="250" height="167" alt="Education Classroom" /></p>
-                    <p>Located in this building:</p>
-                    <ul>
-                        <li><a href="http://hhd.fullerton.edu/" target="_blank">College of Health and Human Development</a></li>
-                        <li><a href="http://nursing.fullerton.edu/" target="_blank">School of Nursing</a></li>
-                    </ul>
-                </div>
-                <div id="divEPS">
-                    <h3>Eastside Parking Structure</h3>
-                    <p><img src="_resources/images/eastside-parking.jpg" width="250" height="167" alt="Eastside Parking" /></p>
-                    <p><a href="http://parking.fullerton.edu/parkinglotcounts/mobile.aspx" target="_blank">Parking Space Availability</a></p>
-                </div>
-                <div id="divG">
-                    <h3>Golleher Alumni House</h3>
-                    <p><img src="_resources/images/golleher.jpg" width="250" height="167" alt="Golleher House" /></p>
-                    <p>Located in this building:</p>
-                    <ul>
-                        <li><a href="http://www.fullerton.edu/alumni" target="_blank">Alumni Association</a></li>
-                    </ul>
-                </div>
-                <div id="divGF">
-                    <h3>Goodwin Field</h3>
-                    <p><img src="_resources/images/goodwin-field.jpg" width="250" height="167" alt="Goodwin Field" /></p>
-                    <p>Field reserved for:</p>
-                    <ul>
-                        <li><a href="http://fullertontitans.com/sports/m-basebl/index" target="_blank">Titan Baseball</a></li>
-                    </ul>
-                </div>
-                <div id="divH">
-                    <h3>Humanities-Social Sciences</h3>
-                    <p><img src="_resources/images/humanities.jpg" width="250" height="167" alt="Humanities-Social Sciences"></p>
-                    <p>Located in this building:</p>
-                    <ul>
-                        <li><a href="http://hss.fullerton.edu/" target="_blank">College of Humanities and Social Sciences</a></li>
-                        <li><a href="http://www.fullerton.edu/aarc/" target="_blank">African American Resource Center</a></li>
-                    </ul>
-                </div>
-                <div id="divKHS">
-                    <h3>Kinesiology & Health Science</h3>
-                    <p><img src="_resources/images/kinesiology.jpg" width="250" height="167" alt="Kinesiology and Health Science Building"</p>
-                    <p>Located in this building:</p>
-                    <ul>
-                        <li>Nursing Sim Lab</li>
-                        <li><a href="http://motorbehaviorlab.wixsite.com/motorbehaviorlabcsuf" target="_blank">Motor Behavior Lab</a> </li>
-                    </ul>
-                </div>
-                <div id="divLH">
-                    <h3>Langsdorf Hall</h3>
-                    <p><img src="_resources/images/langsdorf.jpg" width="250" height="167" alt="Langsdorf Hall" /></p>
-                    <p>Located in this building:</p>
-                    <ul>
-                        <li><a href="http://www.fullerton.edu/it/" target="_blank">Information Technology</a></li>
-                        <li><a href="http://www.fullerton.edu/sa/" target="_blank">Student Affairs</a></li>
-                        <li><a href="http://campusapps2.fullerton.edu/Career" target="_blank">Career Center</a></li>
-                        <li><a href="http://www.fullerton.edu/cice" target="_blank">Center for Internship and Community Engagement</a></li>
-                    </ul>
-                </div>
-                <div id="divMH">
-                    <h3>McCarthy Hall</h3>
-                    <p><img src="_resources/images/mccarthy.jpg" width="250" height="167" alt="McCarthy Hall" /></p>
-                    <p>Located in this building:</p>
-                    <ul>
-                        <!--<li><a href="http://www.fullerton.edu/acadaffairs/" target="_blank">Academic Affairs</a></li>-->
-                        <li><a href="http://nsm.fullerton.edu/" target="_blank">College of Natural Sciences and Mathematics</a></li>
-                        <!--<li><a href="http://www.fullerton.edu/far/" target="_blank">Faculty Affairs and Records</a></li>-->
-                    </ul>
-                </div>
-                <div id="divP">
-                    <h3>Parking and Transportation</h3>
-                    <p><img src="_resources/images/parking.jpg" width="250" height="167" alt="Parking and Transportation Office" /></p>
-                    <p>Phone: 657-278-3082</p>
-                    <p><a href="http://parking.fullerton.edu" target="_blank">http://parking.fullerton.edu</a></p>
-                </div>
-                <div id="divRH">
-                    <h3>Residence Halls</h3>
-                    <p><img src="_resources/images/residence-hall.jpg" width="250" height="167" alt="Residence Hall" /></p>
-                    <p>Located in this complex:</p>
-                    <ul>
-                        <li>Cobb Residence Hall - Phase I</li>
-                        <li>Student Housing - Phase II</li>
-                    </ul>
-                </div>
-                <div id="divPL">
-                    <h3>Pollak Library</h3>
-                    <p><img src="_resources/images/pollak-library.jpg" width="250" height="321" alt="Pollak Library" /></p>
-                    <p><a href="http://library.fullerton.edu" target="_blank">Pollak Library website</a></p>
-                    <p>Located in this building:</p>
-                    <ul>
-                        <li><a href="http://www.fullerton.edu/IT/services/titancard/index.asp" target="_blank">Titan Card Services</a></li>
-                        <li><a href="http://www.fullerton.edu/IT/services/atc/index.asp" target="_blank">Academic Technology Center</a></li>
-                        <li><a href="http://sts.fullerton.edu/sgc/index.asp" target="_blank">Student Genius Corner</a></li>
-                        <li><a href="http://www.fullerton.edu/it/services/reprographics.asp" target="_blank">Digital Print Service</a></li>
-                    </ul>
-                </div>
-                <div id="divRGC">
-                    <h3>Ruby Gerontology Center</h3>
-                    <p><img src="_resources/images/ruby-gerontology.jpg" width="250" height="167" alt="Ruby Gerontology Center" /></p>
-                    <p>Located in this building:</p>
-                    <ul>
-                        <li><a href="http://hss.fullerton.edu/gerontology/" target="_blank">Department of Gerontology</a></li>
-                        <li><a href="http://olli.fullerton.edu/" target="_blank">Osher Lifelong Learning Institute (OLLI)</a></li>
-                    </ul>
-                </div>
-                <div id="divSHCC">
-                    <h3>Student Health and Counseling Center</h3>
-                    <p><img src="_resources/images/student-health.jpg" width="250" height="167" alt="Student Health and Counseling Center" /></p>
-                    <p>657-278-2800</p>
-                    <p><a href="http://www.fullerton.edu/shcc/" target="_blank">fullerton.edu/shcc</a></p>
-                </div>
-                <div id="divSGMH">
-                    <h3>Steven G. Mihaylo Hall</h3>
-                    <p><img src="_resources/images/MCBE.jpg" width="250" height="167" alt="Mihaylo Hall" /></p>
-                    <p>Located in this building:</p>
-                    <ul>
-                        <li><a href="http://business.fullerton.edu" target="_blank">Mihaylo College of Business and Economics</a></li>
-                    </ul>
-                </div>
-                <div id="divSH">
-                    <h3>Student Housing</h3>
-                    <p><img src="_resources/images/housing.jpg" width="250" height="167" alt="Student Housing" /></p>
-                    <p>Located in this complex:</p>
-                    <ul>
-                        <li><a href="http://www.fullerton.edu/housing/" target="_blank">Housing and Residence Life</a></li>
-                        <li>Gastronome</li>
-                        <li>Student Housing - Phase III</li>
-                    </ul>
-                </div>
-                <div id="divSRC">
-                    <h3>Student Rec Center</h3>
-                    <p><img src="_resources/images/rec-center.jpg" width="250" height="133" alt="Student Rec Center" /></p>
-                    <p>Phone: 657-278-7529</p>
-                    <p><a href="http://asi.fullerton.edu/src/index.asp" target="_blank">http://asi.fullerton.edu/src/index.asp</a></p>
-                </div>
-                <div id="divTG">
-                    <h3>Titan Gymnasium</h3>
-                    <p><img src="_resources/images/titan-gym.jpg" alt="Titan Gymnasium" />
-                    <p>Located in this building:</p>
-                    <ul>
-                        <li><a href="http://fullertontitans.com/sports/m-baskbl/index" target="_blank">Men's Basketball</a></li>
-                        <li><a href="http://fullertontitans.com/sports/w-baskbl/index" target="_blank">Women's Basketball</a></li>
-                    </ul>
-                </div>
-                <div id="divTH">
-                    <h3>Titan House</h3>
-                    <p><img src="_resources/images/titan-house.jpg" width="250" height="167" alt="Titan House" /></p>
-                    <p>Located in this building:</p>
-                    <ul>
-                        <li><a href="http://www.fullertontitans.com" target="_blank">Titan Athletics</a></li>
-                    </ul>
-                </div>
-                <div id="divTS">
-                    <h3>Titan Stadium</h3>
-                    <p><img src="_resources/images/titan-stadium.jpg" width="250" height="167" alt="Titan Stadium" />
-                </div>
-                <div id="divTSU">
-                    <h3>Titan Student Union</h3>
-                    <p><img src="_resources/images/TSU.jpg" width="250" height="167" alt="Titan Student Union" />
-                    <p>Located in this building:</p>
-                    <ul>
-                        <li>Alumni Lounge</li>
-                        <li><a href="http://asi.fullerton.edu" target="_blank">Associated Students, Inc.</a></li>
-                        <li>ATM kiosks</li>
-                        <li>Food Court</li>
-                        <li>Garden Cafe</li>
-                        <li>Portola Pavilion A-B</li>
-                        <li>Titan Bowling Center</li>
-                        <li>Titan Little Theater</li>
-                        <li><a href="http://www.asi.fullerton.edu/services/titanPrideCenter.asp" target="_blank">Titan Pride Center</a></li>
-                    </ul>
-                </div>
-                <div id="divUH">
-                    <h3>University Hall</h3>
-                    <p><img src="_resources/images/UH.jpg" width="250" height="167" alt="University Hall" /></p>
-                    <p>Located in this building:</p>
-                    <ul>
-                        <li><a href="http://www.fullerton.edu/aac/" target="_blank">Academic Advisement Center</a></li>
-                        <li><a href="http://www.fullerton.edu/tours/" target="_blank">Campus Tour</a></li>
-                        <li><a href="http://fullerton.edu/financialaid/" target="_blank">Financial Aid</a></li>
-                        <li><a href="http://www.fullerton.edu/DSS/" target="_blank">Disabled Student Services</a></li>
-                        <li><a href="http://www.fullerton.edu/international/" target="_blank">International Student Services</a></li>
-                        <li><a href="http://www.fullerton.edu/deanofstudents/nsp/" target="_blank">New Student Programs</a></li>
-                        <li><a href="http://www.fullerton.edu/studyabroad/" target="_blank">Study Abroad</a></li>
-                        <li><a href="http://www.fullerton.edu/testing/" target="_blank">Testing Center</a></li>
-                        <li><a href="http://fullerton.edu/veterans/" target="_blank">Veterans Student Services</a></li>
-                    </ul>
-                </div>
-                <div id="divUP">
-                    <h3>University Police</h3>
-                    <p><img src="_resources/images/police.jpg" width="250" height="167" alt="University Police" /></p>
-                    <p>Phone: 657-278-2525</p>
-                    <p><a href="http://police.fullerton.edu/" target="_blank">http://police.fullerton.edu/</a></p>
-                </div>
-                <div id="divVA">
-                    <h3>Visual Arts</h3>
-                    <p><img src="_resources/images/vis-art.jpg" width="250" height="167" alt="Visual Arts Building" /></p>
-                    <p>Located in this complex:</p>
-                    <ul>
-                        <li><a href="http://www.fullerton.edu/arts" target="_blank">College of the Arts</a></li>
-                        <li><a href="http://www.fullerton.edu/arts/art/" target="_blank">Department of Visual Arts</a></li>
-                    </ul>
-                </div>
-                <div id="divNPS">
-                    <h3>Nutwood Parking Structure</h3>
-                    <p><img src="_resources/images/nutwood-parking.jpg" width="250" height="167" alt="Nutwood Parking Structure" /></p>
-                    <p><a href="http://parking.fullerton.edu/parkinglotcounts/mobile.aspx" target="_blank">Parking Space Availability</a></p>
-                </div>
-                <div id="divSCPS">
-                    <h3>State College Parking Structure</h3>
-                    <p><img src="_resources/images/state-college-parking.jpg" width="250" height="167" alt="State College Parking Structure" /></p>
-                    <p><a href="http://parking.fullerton.edu/parkinglotcounts/mobile.aspx" target="_blank">Parking Space Availability</a></p>
-                </div>
-        </div>
+                                <h3 style="margin-top: 20%">Bookstore/Titan Shops</h3>
+                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Description:</label><textarea name="desc" id="desc"></textarea>
+                                <label>Location:</label><input type="text" name="location" id="location" value="Bookstore/Titan Shops"><br/>
+                                <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                            </div>
+
+                            <div id="divBA">
+
+                                <h3 style="margin-top: 20%">Becker Amphitheater</h3>
+                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Description:</label><textarea name="desc" id="desc"></textarea>
+                                <label>Location:</label><input type="text" name="location" id="location" value="Becker Amphitheater"><br/>
+                                <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                            </div>
+
+                            <div id="divCC">
+
+                                <h3 style="margin-top: 20%">Children's Center</h3>
+                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Description:</label><textarea name="desc" id="desc"></textarea>
+                                <label>Location:</label><input type="text" name="location" id="location" value="Children's Center"><br/>
+                                <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                            </div>
+
+                            <div id="divCP">
+
+                                <h3 style="margin-top: 20%">College Park</h3>
+                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Description:</label><textarea name="desc" id="desc"></textarea>
+                                <label>Location:</label><input type="text" name="location" id="location" value="College Park"><br/>
+                                <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                            </div>
+
+                            <div id="divCPAC">
+
+                                <h3 style="margin-top: 20%">Clayes Performing Arts Center</h3>
+                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Description:</label><textarea name="desc" id="desc"></textarea>
+                                <label>Location:</label><input type="text" name="location" id="location" value="Clayes Performing Arts Center"><br/>
+                                <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                            </div>
+
+                            <div id="divCY">
+
+                                <h3 style="margin-top: 20%">Corporation Yard</h3>
+                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Description:</label><textarea name="desc" id="desc"></textarea>
+                                <label>Location:</label><input type="text" name="location" id="location" value="Corporation Yard"><br/>
+                                <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                            </div>
+
+                            <div id="divCS">
+
+                                <h3 style="margin-top: 20%">Computer Science</h3>
+                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Description:</label><textarea name="desc" id="desc"></textarea>
+                                <label>Location:</label><input type="text" name="location" id="location" value="Computer Science"><br/>
+                                <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                            </div>
+
+                            <div id="divDBH">
+
+                                <h3 style="margin-top: 20%">Dan Black Hall</h3>
+                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Description:</label><textarea name="desc" id="desc"></textarea>
+                                <label>Location:</label><input type="text" name="location" id="location" value="Dan Black Hall"><br/>
+                                <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                            </div>
+
+                            <div id="divE">
+
+                                <h3 style="margin-top: 20%">Engineering</h3>
+                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Description:</label><textarea name="desc" id="desc"></textarea>
+                                <label>Location:</label><input type="text" name="location" id="location" value="Engineering"><br/>
+                                <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                            </div>
+
+                            <div id="divEC">
+
+
+                                <h3 style="margin-top: 20%">Education Classroom</h3>
+                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Description:</label><textarea name="desc" id="desc"></textarea>
+                                <label>Location:</label><input type="text" name="location" id="location" value="Education Classroom"><br/>
+                                <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                            </div>
+
+                            <div id="divEPS">
+
+                                <h3 style="margin-top: 20%">Eastside Parking Structure</h3>
+                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Description:</label><textarea name="desc" id="desc"></textarea>
+                                <label>Location:</label><input type="text" name="location" id="location" value="Eastside Parking Structure"><br/>
+                                <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                            </div>
+
+                            <div id="divG">
+
+                                <h3 style="margin-top: 20%">Golleher Alumni House</h3>
+                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Description:</label><textarea name="desc" id="desc"></textarea>
+                                <label>Location:</label><input type="text" name="location" id="location" value="Golleher Alumni House"><br/>
+                                <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                            </div>
+
+                            <div id="divGF">
+
+                                <h3 style="margin-top: 20%">Goodwin Field</h3>
+                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Description:</label><textarea name="desc" id="desc"></textarea>
+                                <label>Location:</label><input type="text" name="location" id="location" value="Goodwin Field"><br/>
+                                <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                            </div>
+
+                            <div id="divH">
+
+                                <h3 style="margin-top: 20%">Humanities-Social Sciences</h3>
+                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Description:</label><textarea name="desc" id="desc"></textarea>
+                                <label>Location:</label><input type="text" name="location" id="location" value="Humanities-Social Sciences"><br/>
+                                <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                            </div>
+
+                            <div id="divKHS">
+
+                                <h3 style="margin-top: 20%">Kinesiology & Health Science</h3>
+                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Description:</label><textarea name="desc" id="desc"></textarea>
+                                <label>Location:</label><input type="text" name="location" id="location" value="Kinesiology & Health Science"><br/>
+                                <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                            </div>
+
+                            <div id="divLH">
+
+                                <h3 style="margin-top: 20%">Langsdorf Hall</h3>
+                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Description:</label><textarea name="desc" id="desc"></textarea>
+                                <label>Location:</label><input type="text" name="location" id="location" value="Langsdorf Hall"><br/>
+                                <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                            </div>
+
+                            <div id="divMH">
+
+                                <h3 style="margin-top: 20%">McCarthy Hall</h3>
+                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Description:</label><textarea name="desc" id="desc"></textarea>
+                                <label>Location:</label><input type="text" name="location" id="location" value="McCarthy Hall"><br/>
+                                <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                            </div>
+
+                            <div id="divP">
+
+                                <h3 style="margin-top: 20%">Parking and Transportation</h3>
+                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Description:</label><textarea name="desc" id="desc"></textarea>
+                                <label>Location:</label><input type="text" name="location" id="location" value="Parking and Transportation"><br/>
+                                <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                            </div>
+
+                            <div id="divRH">
+
+                                <h3 style="margin-top: 20%">Residence Halls</h3>
+                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Description:</label><textarea name="desc" id="desc"></textarea>
+                                <label>Location:</label><input type="text" name="location" id="location" value="Residence Halls"><br/>
+                                <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                            </div>
+
+                            <div id="divPL">
+
+                                <h3 style="margin-top: 20%">Pollak Library</h3>
+                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Description:</label><textarea name="desc" id="desc"></textarea>
+                                <label>Location:</label><input type="text" name="location" id="location" value="Pollak Library"><br/>
+                                <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                            </div>
+
+                            <div id="divRGC">
+
+                                <h3 style="margin-top: 20%">Ruby Gerontology Center</h3>
+                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Description:</label><textarea name="desc" id="desc"></textarea>
+                                <label>Location:</label><input type="text" name="location" id="location" value="Ruby Gerontology Center"><br/>
+                                <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                            </div>
+
+                            <div id="divSHCC">
+
+                                <h3 style="margin-top: 20%">Student Health and Counseling Center</h3>
+                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Description:</label><textarea name="desc" id="desc"></textarea>
+                                <label>Location:</label><input type="text" name="location" id="location" value="Student Health and Counseling Center"><br/>
+                                <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                            </div>
+
+                            <div id="divSGMH">
+
+                                <h3 style="margin-top: 20%">Steven G. Mihaylo Hall</h3>
+                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Description:</label><textarea name="desc" id="desc"></textarea>
+                                <label>Location:</label><input type="text" name="location" id="location" value="Steven G. Mihaylo Hall"><br/>
+                                <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                            </div>
+
+                            <div id="divSH">
+
+                                <h3 style="margin-top: 20%">Student Housing</h3>
+                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Description:</label><textarea name="desc" id="desc"></textarea>
+                                <label>Location:</label><input type="text" name="location" id="location" value="Student Housing"><br/>
+                                <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                            </div>
+
+                            <div id="divSRC">
+
+                                <h3 style="margin-top: 20%">Student Rec Center</h3>
+                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Description:</label><textarea name="desc" id="desc"></textarea>
+                                <label>Location:</label><input type="text" name="location" id="location" value="Student Rec Center"><br/>
+                                <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                            </div>
+
+                            <div id="divTG">
+
+                                <h3 style="margin-top: 20%">Titan Gymnasium</h3>
+                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Description:</label><textarea name="desc" id="desc"></textarea>
+                                <label>Location:</label><input type="text" name="location" id="location" value="Titan Gymnasium"><br/>
+                                <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                            </div>
+
+                            <div id="divTH">
+
+                                <h3 style="margin-top: 20%">Titan House</h3>
+                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Description:</label><textarea name="desc" id="desc"></textarea>
+                                <label>Location:</label><input type="text" name="location" id="location" value="Titan House"><br/>
+                                <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                            </div>
+
+                            <div id="divTS">
+
+                                <h3 style="margin-top: 20%">Titan Stadium</h3>
+                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Description:</label><textarea name="desc" id="desc"></textarea>
+                                <label>Location:</label><input type="text" name="location" id="location" value="Titan Stadium"><br/>
+                                <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                            </div>
+
+                            <div id="divTSU">
+
+                                <h3 style="margin-top: 20%">Titan Student Union</h3>
+                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Description:</label><textarea name="desc" id="desc"></textarea>
+                                <label>Location:</label><input type="text" name="location" id="location" value="Titan Student Union"><br/>
+                                <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                            </div>
+
+                            <div id="divUH">
+
+                                <h3 style="margin-top: 20%">University Hall</h3>
+                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Description:</label><textarea name="desc" id="desc"></textarea>
+                                <label>Location:</label><input type="text" name="location" id="location" value="University Hall"><br/>
+                                <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                            </div>
+
+                            <div id="divUP">
+
+                                <h3 style="margin-top: 20%">University Police</h3>
+                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Description:</label><textarea name="desc" id="desc"></textarea>
+                                <label>Location:</label><input type="text" name="location" id="location" value="University Police"><br/>
+                                <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                            </div>
+
+                            <div id="divVA">
+
+                                <h3 style="margin-top: 20%">Visual Arts</h3>
+                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Description:</label><textarea name="desc" id="desc"></textarea>
+                                <label>Location:</label><input type="text" name="location" id="location" value="Visual Arts"><br/>
+                                <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                            </div>
+
+                            <div id="divNPS">
+
+                                <h3 style="margin-top: 20%">Nutwood Parking Structure</h3>
+                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Description:</label><textarea name="desc" id="desc"></textarea>
+                                <label>Location:</label><input type="text" name="location" id="location" value="Nutwood Parking Structure"><br/>
+                                <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                            </div>
+
+                            <div id="divSCPS">
+
+                                <h3 style="margin-top: 20%">State College Parking Structure</h3>
+                                <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                <label>Description:</label><textarea name="desc" id="desc"></textarea>
+                                <label>Location:</label><input type="text" name="location" id="location" value="State College Parking Structure"><br/>
+                                <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px"></div>
+                        </div>
+
 </div>
 </p>
 

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-    <title>Homepage | My Website</title>
+    <title>Lost and Found</title>
     <link type="image/x-icon" rel="shortcut icon" href="/web/image/website/1/favicon/"/>
 
 

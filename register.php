@@ -31,24 +31,19 @@ if(isset($_POST['username'])){
 
 
     $user = $_POST['username'];
+    $email = $_POST['email'];
     $pass = $_POST['password'];
-    $sql="SELECT * FROM user WHERE username='".$user."' and password='".$pass."' LIMIT 1";
-    $result=mysql_query($sql);
-    $row=mysql_fetch_array($result);
-    $count=mysql_num_rows($result);
-    $id=$row['ID'];
-    $user_name = $row['username'];
-    $password = $row['password'];
-   // $u_id = $row['user_id'];
-
-    if($count==1) {
-//session_register("Username");
-//session_register("password");
-        $_SESSION['login_user'] = $id;
-        echo "<script language='javascript' type='text/javascript'>document.location.href ='index.php';</script>";
+    $re_pass = $_POST['re_password'];
+    if($pass === $re_pass){
+        $sql = "insert into user (username, email, password, re_pass) VALUES ('$user','$email','$pass','$re_pass')";
+        $result = mysql_query($sql);
+        if($result == 1){
+            echo "<script language='javascript' type='text/javascript'>document.location.href ='index.php';</script>";
+        }
     }
-    else{
-        echo "<script language='javascript' type='text/javascript'>alert('invalid username or password'); </script>";
+    else {
+
+        echo "<script language='javascript' type='text/javascript'>alert('passwords dont match');</script>";
     }
 }
 
@@ -68,11 +63,14 @@ if(isset($_POST['username'])){
 
                 </div>
                 <input type="text" name="username" id="username" class="user" value="Username" style="font-family:Helvetica" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Username';}" />
+                <input type="email" name="email" id="email" class="user" value="Email Id" style="font-family:Helvetica" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" />
                 <input type="password" name="password" class="pass" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" />
-                 <p style="font-family:Helvetica"> <a href="register.php">Not a member?</a></p>
+                 <input type="password" name="re_password" class="pass" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Confirm Password';}" />
+
+                 <p style="font-family:Helvetica"> <a href="login.php">Already a member?</a></p>
 
         </div>
-        <input type="submit" name="submit" value="Login" style="font-family:Helvetica"/>
+        <input type="submit" name="submit" value="Sign Up" style="font-family:Helvetica"/>
     </div>
     </form>
 </div>
