@@ -13,7 +13,8 @@ date_default_timezone_set('America/Los_Angeles');
 
 
 <!DOCTYPE html>
-<html lang="en-US" data-main-object="ir.ui.view(248,)" data-oe-company-name="Lost and found" data-view-xmlid="website.lost-found" data-editable="1" data-website-id="1">
+<html lang="en-US" data-main-object="ir.ui.view(248,)" data-oe-company-name="Lost and found"
+      data-view-xmlid="website.lost-found" data-editable="1" data-website-id="1" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
@@ -299,360 +300,445 @@ $db=mysqli_select_db($conn, 'lostandfound') or die('Database doesnot exist');
                                 <area id="SCPS" class="location" title="State College Parking Structure (SCPS)" alt="State College Parking Structure (SCPS)"
                                       shape="poly" coords=" 317,126, 339,125, 339,141, 320,143, 316,128" href="#" />
                             </map>
+
+                        <?php
+                               /*Fetch user*/
+                                if($_SESSION['login_user']!="")
+                                {
+                                    $sql1= "SELECT * FROM user WHERE ID='$user_check'";
+                                    $result1=mysqli_query($conn, $sql1);
+                                    $row1 = mysqli_fetch_array($result1);
+                                    $user =$row1["username"];
+
+                                }
+                                    /*adding lost items*/
+                        if(isset($_POST['submit'])){
+
+
+
+                            $lost_item = $_POST['lost_item'];
+                            $desc = $_POST['desc'];
+                            $key_point = $_POST['key_point'];
+                            $location = $_POST['location'];
+
+                                $sql = "insert into lost (user_name, lost_item, lost_description, key_point, location) VALUES ('$user','$lost_item','$desc','$key_point','$location')";
+                                $result = mysqli_query($conn, $sql);
+                                if($result == 1){
+                                    echo "<script language='javascript' type='text/javascript'>document.location.href ='Lost_item.php';</script>";
+                                }
+                            }
+
+
+                        ?>
+
                             <div class="slidePanel">
                                 <input type="button" class="closeButton" value="Close" />
                                 <div id="divAF">
                                     <h3>Anderson Field</h3>
+                                    <form name="lost" action="" method="post">
                                     <label>Item Name:</label><input type="text" name="lost_item" id="lost_item">
                                     <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                     <label>Key point:</label><input type="text" name="key_point" id="key_point">
                                     <label>Location:</label><input type="text" name="location" id="location" value="Anderson Field"><br/>
                                     <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                    </form>
 
                                 </div>
                                 <div id="divB">
-
+                                    <form name="lost" action="" method="post">
                                     <h3 style="margin-top: 20%">Bookstore/Titan Shops</h3>
-                                    <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                    <label>Item Name:</label><input type="text" name="lost_item" id="lost_item">
                                     <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                     <label>Key point:</label><input type="text" name="key_point" id="key_point">
                                     <label>Location:</label><input type="text" name="location" id="location" value="Bookstore/Titan Shops"><br/>
                                     <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                        </form>
                                 </div>
 
                                 <div id="divBA">
-
+                                    <form name="lost" action="" method="post">
                                     <h3 style="margin-top: 20%">Becker Amphitheater</h3>
-                                    <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                    <label>Item Name:</label><input type="text" name="lost_item" id="lost_item">
                                     <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                     <label>Key point:</label><input type="text" name="key_point" id="key_point">
                                     <label>Location:</label><input type="text" name="location" id="location" value="Becker Amphitheater"><br/>
                                     <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                        </form>
                                 </div>
 
                                 <div id="divCC">
 
                                     <h3 style="margin-top: 20%">Children's Center</h3>
-                                    <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                    <form name="lost" action="" method="post">
+                                    <label>Item Name:</label><input type="text" name="lost_item" id="lost_item">
                                     <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                     <label>Key point:</label><input type="text" name="key_point" id="key_point">
                                     <label>Location:</label><input type="text" name="location" id="location" value="Children's Center"><br/>
                                     <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                        </form>
                                 </div>
 
                                 <div id="divCP">
-
+                                    <form name="lost" action="" method="post">
                                     <h3 style="margin-top: 20%">College Park</h3>
-                                    <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                    <label>Item Name:</label><input type="text" name="lost_item" id="lost_item">
                                     <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                     <label>Key point:</label><input type="text" name="key_point" id="key_point">
                                     <label>Location:</label><input type="text" name="location" id="location" value="College Park"><br/>
                                     <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                        </form>
                                 </div>
 
                                 <div id="divCPAC">
+                                    <form name="lost" action="" method="post">
 
                                     <h3 style="margin-top: 20%">Clayes Performing Arts Center</h3>
-                                    <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                    <label>Item Name:</label><input type="text" name="lost_item" id="lost_item">
                                     <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                     <label>Key point:</label><input type="text" name="key_point" id="key_point">
                                     <label>Location:</label><input type="text" name="location" id="location" value="Clayes Performing Arts Center"><br/>
                                     <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                        </form>
                                 </div>
 
                                 <div id="divCY">
-
+                                    <form name="lost" action="" method="post">
                                     <h3 style="margin-top: 20%">Corporation Yard</h3>
-                                    <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                    <label>Item Name:</label><input type="text" name="lost_item" id="lost_item">
                                     <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                     <label>Key point:</label><input type="text" name="key_point" id="key_point">
                                     <label>Location:</label><input type="text" name="location" id="location" value="Corporation Yard"><br/>
                                     <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                        </form>
                                 </div>
 
                                 <div id="divCS">
+                                    <form name="lost" action="" method="post">
 
                                     <h3 style="margin-top: 20%">Computer Science</h3>
-                                    <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                    <label>Item Name:</label><input type="text" name="lost_item" id="lost_item">
                                     <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                     <label>Key point:</label><input type="text" name="key_point" id="key_point">
                                     <label>Location:</label><input type="text" name="location" id="location" value="Computer Science"><br/>
                                     <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                        </form>
                                 </div>
 
                                 <div id="divDBH">
+                                    <form name="lost" action="" method="post">
 
                                     <h3 style="margin-top: 20%">Dan Black Hall</h3>
-                                    <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                    <label>Item Name:</label><input type="text" name="lost_item" id="lost_item">
                                     <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                     <label>Key point:</label><input type="text" name="key_point" id="key_point">
                                     <label>Location:</label><input type="text" name="location" id="location" value="Dan Black Hall"><br/>
                                     <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                        </form>
                                 </div>
 
                                 <div id="divE">
-
+                                    <form name="lost" action="" method="post">
                                     <h3 style="margin-top: 20%">Engineering</h3>
-                                    <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                    <label>Item Name:</label><input type="text" name="lost_item" id="lost_item">
                                     <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                     <label>Key point:</label><input type="text" name="key_point" id="key_point">
                                     <label>Location:</label><input type="text" name="location" id="location" value="Engineering"><br/>
                                     <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                        </form>
                                 </div>
 
                                 <div id="divEC">
+                                    <form name="lost" action="" method="post">
 
 
                                     <h3 style="margin-top: 20%">Education Classroom</h3>
-                                    <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                    <label>Item Name:</label><input type="text" name="lost_item" id="lost_item">
                                     <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                     <label>Key point:</label><input type="text" name="key_point" id="key_point">
                                     <label>Location:</label><input type="text" name="location" id="location" value="Education Classroom"><br/>
                                     <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                        </form>
                                 </div>
 
                                 <div id="divEPS">
+                                    <form name="lost" action="" method="post">
 
                                     <h3 style="margin-top: 20%">Eastside Parking Structure</h3>
-                                    <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                    <label>Item Name:</label><input type="text" name="lost_item" id="lost_item">
                                     <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                     <label>Key point:</label><input type="text" name="key_point" id="key_point">
                                     <label>Location:</label><input type="text" name="location" id="location" value="Eastside Parking Structure"><br/>
                                     <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                        </form>
                                 </div>
 
                                 <div id="divG">
+                                    <form name="lost" action="" method="post">
 
                                     <h3 style="margin-top: 20%">Golleher Alumni House</h3>
-                                    <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                    <label>Item Name:</label><input type="text" name="lost_item" id="lost_item">
                                     <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                     <label>Key point:</label><input type="text" name="key_point" id="key_point">
                                     <label>Location:</label><input type="text" name="location" id="location" value="Golleher Alumni House"><br/>
                                     <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                        </form>
                                 </div>
 
                                 <div id="divGF">
+                                    <form name="lost" action="" method="post">
 
                                     <h3 style="margin-top: 20%">Goodwin Field</h3>
-                                    <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                    <label>Item Name:</label><input type="text" name="lost_item" id="lost_item">
                                     <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                     <label>Key point:</label><input type="text" name="key_point" id="key_point">
                                     <label>Location:</label><input type="text" name="location" id="location" value="Goodwin Field"><br/>
                                     <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                        </form>
                                 </div>
 
                                 <div id="divH">
+                                    <form name="lost" action="" method="post">
 
                                     <h3 style="margin-top: 20%">Humanities-Social Sciences</h3>
-                                    <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                    <label>Item Name:</label><input type="text" name="lost_item" id="lost_item">
                                     <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                     <label>Location:</label><input type="text" name="location" id="location" value="Humanities-Social Sciences"><br/>
                                     <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                        </form>
                                 </div>
 
                                 <div id="divKHS">
+                                    <form name="lost" action="" method="post">
 
                                     <h3 style="margin-top: 20%">Kinesiology & Health Science</h3>
-                                    <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                    <label>Item Name:</label><input type="text" name="lost_item" id="lost_item">
                                     <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                     <label>Key point:</label><input type="text" name="key_point" id="key_point">
                                     <label>Location:</label><input type="text" name="location" id="location" value="Kinesiology & Health Science"><br/>
                                     <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                        </form>
                                 </div>
 
                                 <div id="divLH">
-
+                                    <form name="lost" action="" method="post">
                                     <h3 style="margin-top: 20%">Langsdorf Hall</h3>
-                                    <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                    <label>Item Name:</label><input type="text" name="lost_item" id="lost_item">
                                     <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                     <label>Key point:</label><input type="text" name="key_point" id="key_point">
                                     <label>Location:</label><input type="text" name="location" id="location" value="Langsdorf Hall"><br/>
                                     <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                        </form>
                                 </div>
 
                                 <div id="divMH">
-
+                                    <form name="lost" action="" method="post">
                                     <h3 style="margin-top: 20%">McCarthy Hall</h3>
-                                    <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                    <label>Item Name:</label><input type="text" name="lost_item" id="lost_item">
                                     <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                     <label>Key point:</label><input type="text" name="key_point" id="key_point">
                                     <label>Location:</label><input type="text" name="location" id="location" value="McCarthy Hall"><br/>
                                     <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                        </form>
                                 </div>
 
                                 <div id="divP">
-
+                                    <form name="lost" action="" method="post">
                                     <h3 style="margin-top: 20%">Parking and Transportation</h3>
-                                    <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                    <label>Item Name:</label><input type="text" name="lost_item" id="lost_item">
                                     <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                     <label>Key point:</label><input type="text" name="key_point" id="key_point">
                                     <label>Location:</label><input type="text" name="location" id="location" value="Parking and Transportation"><br/>
                                     <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                        </form>
                                 </div>
 
                                 <div id="divRH">
-
+                                    <form name="lost" action="" method="post">
                                     <h3 style="margin-top: 20%">Residence Halls</h3>
-                                    <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                    <label>Item Name:</label><input type="text" name="lost_item" id="lost_item">
                                     <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                     <label>Key point:</label><input type="text" name="key_point" id="key_point">
                                     <label>Location:</label><input type="text" name="location" id="location" value="Residence Halls"><br/>
                                     <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                        </form>
                                 </div>
 
                                 <div id="divPL">
-
+                                    <form name="lost" action="" method="post">
                                     <h3 style="margin-top: 20%">Pollak Library</h3>
-                                    <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                    <label>Item Name:</label><input type="text" name="lost_item" id="lost_item">
                                     <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                     <label>Key point:</label><input type="text" name="key_point" id="key_point">
                                     <label>Location:</label><input type="text" name="location" id="location" value="Pollak Library"><br/>
                                     <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                    </form>
                                 </div>
 
                                 <div id="divRGC">
-
+                                    <form name="lost" action="" method="post">
                                     <h3 style="margin-top: 20%">Ruby Gerontology Center</h3>
-                                    <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                    <label>Item Name:</label><input type="text" name="lost_item" id="lost_item">
                                     <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                     <label>Key point:</label><input type="text" name="key_point" id="key_point">
                                     <label>Location:</label><input type="text" name="location" id="location" value="Ruby Gerontology Center"><br/>
                                     <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                        </form>
                                 </div>
 
                                 <div id="divSHCC">
-
+                                    <form name="lost" action="" method="post">
                                     <h3 style="margin-top: 20%">Student Health and Counseling Center</h3>
-                                    <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                    <label>Item Name:</label><input type="text" name="lost_item" id="lost_item">
                                     <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                     <label>Key point:</label><input type="text" name="key_point" id="key_point">
                                     <label>Location:</label><input type="text" name="location" id="location" value="Student Health and Counseling Center"><br/>
                                     <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                        </form>
                                 </div>
 
                                 <div id="divSGMH">
-
+                                    <form name="lost" action="" method="post">
                                     <h3 style="margin-top: 20%">Steven G. Mihaylo Hall</h3>
-                                    <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                    <label>Item Name:</label><input type="text" name="lost_item" id="lost_item">
                                     <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                     <label>Key point:</label><input type="text" name="key_point" id="key_point">
                                     <label>Location:</label><input type="text" name="location" id="location" value="Steven G. Mihaylo Hall"><br/>
                                     <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                        </form>
                                 </div>
 
                                 <div id="divSH">
-
+                                    <form name="lost" action="" method="post">
                                     <h3 style="margin-top: 20%">Student Housing</h3>
-                                    <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                    <label>Item Name:</label><input type="text" name="lost_item" id="lost_item">
                                     <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                     <label>Key point:</label><input type="text" name="key_point" id="key_point">
                                     <label>Location:</label><input type="text" name="location" id="location" value="Student Housing"><br/>
                                     <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                        </form>
                                 </div>
 
                                 <div id="divSRC">
-
+                                    <form name="lost" action="" method="post">
                                     <h3 style="margin-top: 20%">Student Rec Center</h3>
-                                    <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                    <label>Item Name:</label><input type="text" name="lost_item" id="lost_item">
                                     <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                     <label>Key point:</label><input type="text" name="key_point" id="key_point">
                                     <label>Location:</label><input type="text" name="location" id="location" value="Student Rec Center"><br/>
                                     <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                        </form>
                                 </div>
 
                                 <div id="divTG">
-
+                                    <form name="lost" action="" method="post">
                                     <h3 style="margin-top: 20%">Titan Gymnasium</h3>
-                                    <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                    <label>Item Name:</label><input type="text" name="lost_item" id="lost_item">
                                     <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                     <label>Key point:</label><input type="text" name="key_point" id="key_point">
                                     <label>Location:</label><input type="text" name="location" id="location" value="Titan Gymnasium"><br/>
                                     <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                        </form>
                                 </div>
 
                                 <div id="divTH">
-
+                                    <form name="lost" action="" method="post">
                                     <h3 style="margin-top: 20%">Titan House</h3>
-                                    <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                    <label>Item Name:</label><input type="text" name="lost_item" id="lost_item">
                                     <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                     <label>Key point:</label><input type="text" name="key_point" id="key_point">
                                     <label>Location:</label><input type="text" name="location" id="location" value="Titan House"><br/>
                                     <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                        </form>
                                 </div>
 
                                 <div id="divTS">
-
+                                    <form name="lost" action="" method="post">
                                     <h3 style="margin-top: 20%">Titan Stadium</h3>
-                                    <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                    <label>Item Name:</label><input type="text" name="lost_item" id="lost_item">
                                     <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                     <label>Key point:</label><input type="text" name="key_point" id="key_point">
                                     <label>Location:</label><input type="text" name="location" id="location" value="Titan Stadium"><br/>
                                     <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                        </form>
                                 </div>
 
                                 <div id="divTSU">
-
+                                    <form name="lost" action="" method="post">
                                     <h3 style="margin-top: 20%">Titan Student Union</h3>
-                                    <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                    <label>Item Name:</label><input type="text" name="lost_item" id="lost_item">
                                     <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                     <label>Key point:</label><input type="text" name="key_point" id="key_point">
                                     <label>Location:</label><input type="text" name="location" id="location" value="Titan Student Union"><br/>
                                     <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                        </form>
                                 </div>
 
                                 <div id="divUH">
-
+                                    <form name="lost" action="" method="post">
                                     <h3 style="margin-top: 20%">University Hall</h3>
-                                    <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                    <label>Item Name:</label><input type="text" name="lost_item" id="lost_item">
                                     <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                     <label>Key point:</label><input type="text" name="key_point" id="key_point">
                                     <label>Location:</label><input type="text" name="location" id="location" value="University Hall"><br/>
                                     <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                        </form>
                                 </div>
 
-                                <div id="divUP">
 
+                                <div id="divUP">
+                                    <form name="lost" action="" method="post">
                                     <h3 style="margin-top: 20%">University Police</h3>
-                                    <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                    <label>Item Name:</label><input type="text" name="lost_item" id="lost_item">
                                     <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                     <label>Key point:</label><input type="text" name="key_point" id="key_point">
                                     <label>Location:</label><input type="text" name="location" id="location" value="University Police"><br/>
                                     <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                        </form>
                                 </div>
 
                                 <div id="divVA">
-
+                                    <form name="lost" action="" method="post">
                                     <h3 style="margin-top: 20%">Visual Arts</h3>
-                                    <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                    <label>Item Name:</label><input type="text" name="lost_item" id="lost_item">
                                     <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                     <label>Key point:</label><input type="text" name="key_point" id="key_point">
                                     <label>Location:</label><input type="text" name="location" id="location" value="Visual Arts"><br/>
                                     <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                        </form>
                                 </div>
 
                                 <div id="divNPS">
-
+                                    <form name="lost" action="" method="post">
                                     <h3 style="margin-top: 20%">Nutwood Parking Structure</h3>
-                                    <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                    <label>Item Name:</label><input type="text" name="lost_item" id="lost_item">
                                     <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                     <label>Key point:</label><input type="text" name="key_point" id="key_point">
                                     <label>Location:</label><input type="text" name="location" id="location" value="Nutwood Parking Structure"><br/>
                                     <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                        </form>
                                 </div>
 
                                 <div id="divSCPS">
-
+                                    <form name="lost" action="" method="post">
                                     <h3 style="margin-top: 20%">State College Parking Structure</h3>
-                                    <label>Item Name:</label><input type="text" name="found_item" id="lost_item">
+                                    <label>Item Name:</label><input type="text" name="lost_item" id="lost_item">
                                     <label>Description:</label><textarea name="desc" id="desc"></textarea>
                                     <label>Key point:</label><input type="text" name="key_point" id="key_point">
                                     <label>Location:</label><input type="text" name="location" id="location" value="State College Parking Structure"><br/>
-                                    <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px"></div>
+                                    <input type="submit" value="Add" id="submit" name="submit" style="margin-top: 5px">
+                                        </form>
                                 </div>
-</div>
+
+                                </div>
+
+                        </div>
 </p>
+                </div>
 
 </section>
+
+
+ <!-- List lost and found -->
 <section class="s_feature_grid" style="">
     <div class="container">
         <div class="row">
@@ -663,25 +749,33 @@ $db=mysqli_select_db($conn, 'lostandfound') or die('Database doesnot exist');
                         <br/>
                     </h3>
                 </div>
-                <div class="col-md-12">
-                    <span style="min-width: 45px" class="pull-left mb16 fa fa-thumbs-o-down fa-2x" title=""><img src="images/thumbs-down.png" width="50" height="50" alt="thumbs down"></span>
-                    <a href="#"> <h4 class="mt0 mb0">Phone</h4>
-                        <p>Add description</p>
-                    </a>
-                    <br/>
-                </div>
-                <div class="col-md-12">
-                    <span style="min-width: 45px" class="pull-left mb16 fa fa-thumbs-o-down fa-2x" data-original-title="" title=""><img src="images/thumbs-down.png" width="50" height="50" alt="thumbs down"></span>
-                    <a href="#"> <h4 class="mt0 mb0">Laptop charger</h4>
-                        <p>Add description</p></a>
-                    <br/>
-                </div>
-                <div class="col-md-12">
-                    <span style="min-width: 45px" class="pull-left mb16 fa fa-thumbs-o-down fa-2x"><img src="images/thumbs-down.png" width="50" height="50" alt="thumbs down"></span>
-                    <a href="#"> <h4 class="mt0 mb0">book</h4>
-                        <p>add description</p></a>
-                    <br/>
-                </div>
+                <!--list of lost items -->
+                <?php
+                $sql = "SELECT * FROM lost";
+                $res = mysqli_query($conn, $sql);
+
+                while($row2 = mysqli_fetch_array($res)) {
+                    $id = $row2['id'];
+                    $user = $row2['user_name'];
+                    $item = $row2['lost_item'];
+                    $desc = $row2["lost_description"];
+                    $key_point = $row2['key_point'];
+                    $location = $row2['location'];
+
+                    ?>
+
+                    <div class="col-md-12">
+                        <span style="min-width: 45px" class="pull-left mb16 fa fa-thumbs-o-down fa-2x" title=""><img
+                                src="images/thumbs-down.png" width="50" height="50" alt="thumbs down"></span>
+                        <a href="#"><h4 class="mt0 mb0"><?php echo $item; ?></h4>
+                            <p><?php echo $desc; ?></p>
+                        </a>
+                        <br/>
+                    </div>
+                    <?php
+                    }
+                    ?>
+                <!--list of lost items end -->
             </div>
             <div class="col-md-5">
                 <div class="col-md-12 mt16 mb16">
@@ -690,30 +784,39 @@ $db=mysqli_select_db($conn, 'lostandfound') or die('Database doesnot exist');
                         <br/>
                     </h3>
                 </div>
-                <div class="col-md-12">
-                    <span style="min-width: 45px" class="pull-left mb16 fa fa-thumbs-o-up fa-2x" data-original-title="" title=""><img src="images/thumbs-up.png" width="50" height="50" alt="thumbs up"></span>
-                    <a href="#"><h4 class="mt0 mb0">Phone</h4>
-                        <p>Add description</p>
-                    </a>
-                    <br/>
-                </div>
-                <div class="col-md-12">
-                    <span style="min-width: 45px" class="pull-left mb16 fa fa-thumbs-o-up fa-2x" data-original-title="" title=""><img src="images/thumbs-up.png" width="50" height="50" alt="thumbs up"></span>
-                    <a href="#"><h4 class="mt0 mb0">Laptop charger</h4>
-                        <p>Add description</p>
-                    </a>
-                    <br/>
-                </div>
-                <div class="col-md-12">
-                    <span style="min-width: 45px" class="pull-left mb16 fa fa-thumbs-o-up fa-2x"><img src="images/thumbs-up.png" width="50" height="50" alt="thumbs up"></span>
-                    <a href="#"><h4 class="mt0 mb0">book</h4>
-                        <p>add description</p></a>
-                    <br/>
-                </div>
+                <!--list of found items -->
+                <?php
+                $sql = "SELECT * FROM found ";
+                $res = mysqli_query($conn, $sql);
+
+                while($row2 = mysqli_fetch_array($res)) {
+                    $id = $row2['id'];
+                    $user = $row2['user_name'];
+                    $item = $row2['found_item'];
+                    $desc = $row2["found_description"];
+                   // $key_point = $row2['key_point'];
+                    $location = $row2['location'];
+
+                    ?>
+
+                    <div class="col-md-12">
+                        <span style="min-width: 45px" class="pull-left mb16 fa fa-thumbs-o-up fa-2x" data-original-title="" title=""><img src="images/thumbs-up.png" width="50" height="50" alt="thumbs up"></span>
+                        <a href="#"><h4 class="mt0 mb0"><?php echo $item;?></h4>
+                            <p><?php echo $desc;?></p>
+                        </a>
+                        <br/>
+                    </div>
+                    <?php
+                }
+                ?>
+                <!--list of found items end -->
+
+
             </div>
         </div>
     </div>
 </section>
+ <!-- List of lost and found end -->
 </div>
 
 </main>
