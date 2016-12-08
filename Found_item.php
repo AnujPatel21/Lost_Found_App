@@ -201,16 +201,7 @@ $db=mysqli_select_db($conn, 'lostandfound') or die('Database doesnot exist');
 
 
                         <li>
-                            <a href="/page/contactus">
-                                <span data-oe-model="website.menu" data-oe-id="3" data-oe-field="name" data-oe-type="char" data-oe-expression="submenu.name">Contact us</span>
-                            </a>
-                        </li>
-
-
-
-
-                        <li>
-                            <a href="#">
+                            <a href="faqs.php">
                                 <span data-oe-model="website.menu" data-oe-id="6" data-oe-field="name" data-oe-type="char" data-oe-expression="submenu.name">FAQs</span>
                             </a>
                         </li>
@@ -326,26 +317,28 @@ $db=mysqli_select_db($conn, 'lostandfound') or die('Database doesnot exist');
                             </map>
 
                         <?php
-                        /*Fetch user*/
-                        if($_SESSION['login_user']!="")
-                        {
-                            $sql1= "SELECT * FROM user WHERE ID='$user_check'";
-                            $result1=mysqli_query($conn, $sql1);
-                            $row1 = mysqli_fetch_array($result1);
-                            $user =$row1["username"];
 
-                        }
-                            /* Adding found items*/
+                               /*Fetch user*/
+                                if($_SESSION['login_user']!="")
+                                {
+                                    $sql1= "SELECT * FROM user WHERE ID='$user_check'";
+                                    $result1=mysqli_query($conn, $sql1);
+                                    $row1 = mysqli_fetch_array($result1);
+                                    $user =$row1["username"];
+                                    $email = $row1["email"];
+
+                                }
+                                    /*adding lost items*/
                         if(isset($_POST['submit'])){
 
 
 
                             $found_item = $_POST['found_item'];
                             $desc = $_POST['desc'];
-                           // $key_point = $_POST['key_point'];
+                            //$key_point = $_POST['key_point'];
                             $location = $_POST['location'];
 
-                            $sql = "insert into found (user_name, found_item, found_description, location) VALUES ('$user','$found_item','$desc','$location')";
+                            $sql = "insert into lost_found (user_name,user_email, item, description, location, situation) VALUES ('$user','$email','$found_item','$desc','$location', 'Found')";
                             $result = mysqli_query($conn, $sql);
                             if($result == 1){
                                 echo "<script language='javascript' type='text/javascript'>document.location.href ='Found_item.php';</script>";
@@ -726,14 +719,15 @@ $db=mysqli_select_db($conn, 'lostandfound') or die('Database doesnot exist');
                             </div>
                             <!--list of lost items -->
                             <?php
-                            $sql = "SELECT * FROM lost";
+                            $sql = "SELECT * FROM lost_found where situation = 'Lost'";
                             $res = mysqli_query($conn, $sql);
 
                             while($row2 = mysqli_fetch_array($res)) {
                             $id = $row2['id'];
                             $user = $row2['user_name'];
-                            $item = $row2['lost_item'];
-                            $desc = $row2["lost_description"];
+                            $email = $row2['user_email'];
+                            $item = $row2['item'];
+                            $desc = $row2["description"];
                             $key_point = $row2['key_point'];
                             $location = $row2['location'];
 
@@ -750,7 +744,8 @@ $db=mysqli_select_db($conn, 'lostandfound') or die('Database doesnot exist');
                                         <div class="style-single">
                                 <p style="text-transform: capitalize">Key Point: <?php echo $key_point; ?></p>
                                 <p style="text-transform: capitalize">Location: <?php echo $location; ?></p>
-                                <p><a href="#">Contact Person</a> </p>
+                                <p><a href="contact_preson.php?id=<?php echo $id; ?>">Contact Person</a> </p>
+
                             </div>
                         </div>
                         <br/>
@@ -771,15 +766,16 @@ $db=mysqli_select_db($conn, 'lostandfound') or die('Database doesnot exist');
                     </div>
                     <!--list of found items -->
                     <?php
-                    $sql = "SELECT * FROM found ";
+                    $sql = "SELECT * FROM lost_found where situation = 'Found'";
                     $res = mysqli_query($conn, $sql);
 
                     while($row2 = mysqli_fetch_array($res)) {
                     $id = $row2['id'];
                     $user = $row2['user_name'];
-                    $item = $row2['found_item'];
-                    $desc = $row2["found_description"];
-                    // $key_point = $row2['key_point'];
+                    $email = $row2['user_email'];
+                    $item = $row2['item'];
+                    $desc = $row2["description"];
+                   // $key_point = $row2['key_point'];
                     $location = $row2['location'];
 
                     ?>
@@ -793,7 +789,8 @@ $db=mysqli_select_db($conn, 'lostandfound') or die('Database doesnot exist');
                             <div class="toggle-wrap" style="margin-left: 14%">
                                 <div class="style-single">
                         <p style="text-transform: capitalize">Location: <?php echo $location; ?></p>
-                        <p><a href="#">Contact Person</a> </p>
+                        <p><a href="contact_preson.php?id=<?php echo $id; ?>">Contact Person</a> </p>
+
                     </div>
                 </div>
                 <br/>
@@ -831,7 +828,7 @@ $db=mysqli_select_db($conn, 'lostandfound') or die('Database doesnot exist');
                 <h4 data-oe-id="228" data-oe-model="ir.ui.view" data-oe-field="arch" data-oe-xpath="/data/xpath/div/div[1]/div[2]/h4[1]">Connect with us</h4>
                 <ul class="list-unstyled" data-oe-id="228" data-oe-model="ir.ui.view" data-oe-field="arch" data-oe-xpath="/data/xpath/div/div[1]/div[2]/ul[1]">
                     <li>
-                        <a href="/page/website.contactus">Contact us</a>
+                        <a href="http://www.fullerton.edu/">Contact us</a>
                     </li>
                 </ul>
                 <ul class="list-unstyled">

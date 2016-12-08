@@ -1,5 +1,9 @@
+
+
+
 <!DOCTYPE html>
-<html lang="en-US" data-main-object="ir.ui.view(248,)" data-oe-company-name="Lost and found" data-view-xmlid="website.lost-found" data-editable="1" data-website-id="1">
+<html lang="en-US" data-main-object="ir.ui.view(248,)" data-oe-company-name="Lost and found"
+      data-view-xmlid="website.lost-found" data-editable="1" data-website-id="1" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
@@ -34,40 +38,12 @@
 
     <link href="css/asset_1.css" rel="stylesheet"/>
 
-
-    <script  type="text/javascript" src="JS/web.assets_common.js"></script>
-
-    <script  type="text/javascript" src="JS/web.assets_frontend.js"></script>
-
-    <script  type="text/javascript" src="JS/web_editor.summernote.js"></script>
-
-    <script  type="text/javascript" src="JS/web_editor.assets_editor.js"></script>
-
-    <script  type="text/javascript" src="JS/website.assets_editor.js"></script>
-
-    <!-- slider -->
-    <script src="http://code.jquery.com/jquery-2.1.1.js"></script>
-    <script>
-
-        $(document).ready(function() {
-            $(".toggle-trigger").click(function() {
-                $(this).parent().nextAll('.toggle-wrap').first().toggle('slow');
-                // $(this).val("Read less");
-            });
-        });
-    </script>
-    <style>
-        .toggle-wrap{
-            display:none;
-        }
-    </style>
-    <!-- slider end -->
 </head>
-<?php
-$conn=mysqli_connect('localhost','root','');
-$db=mysqli_select_db($conn, 'lostandfound') or die('Database doesnot exist');
-?>
+
+
+
 <body class="o_connected_user">
+
 
 
 
@@ -123,6 +99,9 @@ $db=mysqli_select_db($conn, 'lostandfound') or die('Database doesnot exist');
 
 
 
+
+
+
                         <li>
                             <a href="faqs.php">
                                 <span data-oe-model="website.menu" data-oe-id="6" data-oe-field="name" data-oe-type="char" data-oe-expression="submenu.name">FAQs</span>
@@ -131,18 +110,16 @@ $db=mysqli_select_db($conn, 'lostandfound') or die('Database doesnot exist');
 
 
 
-                        <!-- <li class="divider"></li>
-                         <li class="dropdown">
-                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                 <b>
-                                     <span>jinal patel</span>
-                                     <span class="caret"></span>
-                                 </b>
-                             </a>
-                             <ul class="dropdown-menu js_usermenu" role="menu">
-                                 <li id="o_logout"><a role="menuitem" href="/web/session/logout?redirect=/">Logout</a></li>
-                             </ul>
-                         </li>-->
+                        <li>
+
+                            <a href="logout.php">
+                                <span data-oe-model="website.menu" data-oe-id="6" data-oe-field="name" data-oe-type="char" data-oe-expression="submenu.name">Logout</span>
+                            </a>
+
+                        </li>
+
+
+
 
 
                     </ul>
@@ -152,128 +129,45 @@ $db=mysqli_select_db($conn, 'lostandfound') or die('Database doesnot exist');
     </header>
     <main>
 
-
         <div id="wrap" class="oe_structure oe_empty" data-oe-id="248" data-oe-model="ir.ui.view" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]">
-            <section class="s_text_block_image_fw oe_img_bg oe_custom_bg">
-                <style>
-                    .s_text_block_image_fw{
-                        background-image: url("images/csuf-seal2.jpg");
-                    }
 
-                </style>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6 mt64 mb64 bg-black-75">
-                            <h2 style="font-size:62px">Lost &amp; Found</h2>
-                            <h4 class="text-muted">&nbsp;</h4>
-                            <p>Lost and Found is a cloud based web app for California State University, Fullerton by allowing a person to report a lost or found items.</p>
-                        </div>
-                    </div>
+
+
+
+
+            <div id="contact" style="width: 60%; margin-left: 20%; margin-top: 6%;border:1px #EEE solid;">
+                <div style="margin-left: 2%">
+
+                <h2 align="center">Frequently Asked Questions</h2>
+                <h4>1. Do I have to register to use the site?</h4>
+                <p>Yes! In order to access the various functions of the website, you must become a user. This is to ensure authenticity.
+                </p>
+                <h4>2. How do I register?</h4>
+                <p>Simply click on the add lost or add found item, on the top right side of the page, and the website will redirect you to the login page.
+                    If you are not a member, click on the "Not a member?" link, and begin providing the necessary information.
+                </p>
+                <h4>3. What can I do without registering?</h4>
+                <p>You cannot report items found or your items which are lost. However, you can filter through the database and search for items in the current listings.</p>
+                <h4>4. Can anyone use this website?</h4>
+                <p>Yes! Although it is primarily for the students of CSUF, anyone can use it. However, keep in mind that the listed items and future listings are only for items
+                    found and lost in the CSUF campus.
+                </p>
+                <h4>5. How does the website work?</h4>
+                <p>After succesfully registering, you can use the various buttons on the top right tab to either add a lost item or a found item.
+                </p>
+                <h4>6. Someone reported my lost item, and I found it on the website! How can I contact the original poster?</h4>
+                <p>Find the item listing, click on read more, and a contact tab should appear. This will allow you to contact the original poster via email.
+                </p>
+                <h4>7. I found an item without an owner and wish to report it. How can I do this?</h4>
+                <p>First of all, thank you for doing the right thing! After registering on the website, click on the "add lost item" tab on the top right. The website
+                    will then navigate you to the campus map. Select the location where it was found, and provide the required information.
+                </p>
+                <h4>8. How is the website implemented?</h4>
+                <p>Without going into too much detail, we are utilizing the cloud services of AWS. We advise you to check it out!</p>
                 </div>
-            </section>
-            <!-- List lost and found -->
-            <section class="s_feature_grid" style="">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-5 col-md-offset-1">
-                            <div class="col-md-12 mt16 mb16">
-                                <h3 class="mb0">Lost Items</h3>
-                                <h3 class="mb0">
-                                    <br/>
-                                </h3>
-                            </div>
-                            <!--list of lost items -->
-                            <?php
-                            $sql = "SELECT * FROM lost_found where situation = 'Lost'";
-                            $res = mysqli_query($conn, $sql);
 
-                            while($row2 = mysqli_fetch_array($res)) {
-                            $id = $row2['id'];
-                            $user = $row2['user_name'];
-                            $email = $row2['user_email'];
-                            $item = $row2['item'];
-                            $desc = $row2["description"];
-                            $key_point = $row2['key_point'];
-                            $location = $row2['location'];
+            </div>
 
-                            ?>
-
-                            <div class="col-md-12">
-                        <span style="min-width: 45px; " class="pull-left mb16 fa fa-thumbs-o-down fa-2x" title=""><img
-                                src="images/thumbs-down.png" width="50" height="50" alt="thumbs down"></span>
-                                <a href="#"><h4 class="mt0 mb0" style="text-transform: capitalize"><?php echo $item; ?></h4>
-                                    <p style="text-transform: capitalize"><?php echo $desc; ?></p>
-                                </a>
-                                <p><a class="toggle-trigger">Read More..</a><p>
-                                    <div class="toggle-wrap" style="margin-left: 14%">
-                                        <div class="style-single">
-                                <p style="text-transform: capitalize">Key Point: <?php echo $key_point; ?></p>
-                                <p style="text-transform: capitalize">Location: <?php echo $location; ?></p>
-                                <p><a href="contact_preson.php?id=<?php echo $id; ?>">Contact Person</a> </p>
-                            </div>
-                        </div>
-                        <br/>
-
-                    </div>
-
-                    <?php
-                    }
-                    ?>
-                    <!--list of lost items end -->
-                </div>
-                <div class="col-md-5">
-                    <div class="col-md-12 mt16 mb16">
-                        <h3 class="mb0">Found Items</h3>
-                        <h3 class="mb0">
-                            <br/>
-                        </h3>
-                    </div>
-                    <!--list of found items -->
-                    <?php
-                    $sql = "SELECT * FROM lost_found where situation = 'Found'";
-                    $res = mysqli_query($conn, $sql);
-
-                    while($row2 = mysqli_fetch_array($res)) {
-                    $id = $row2['id'];
-                    $user = $row2['user_name'];
-                    $email = $row2['user_email'];
-                    $item = $row2['item'];
-                    $desc = $row2["description"];
-                    $key_point = $row2['key_point'];
-                    $location = $row2['location'];
-
-                    ?>
-
-                    <div class="col-md-12">
-                        <span style="min-width: 45px" class="pull-left mb16 fa fa-thumbs-o-up fa-2x" data-original-title="" title=""><img src="images/thumbs-up.png" width="50" height="50" alt="thumbs up"></span>
-                        <a href="#"><h4 class="mt0 mb0" style="text-transform: capitalize"><?php echo $item; ?></h4>
-                            <p style="text-transform: capitalize"><?php echo $desc; ?></p>
-                        </a>
-                        <p ><a class="toggle-trigger" >Read More..</a><p>
-                            <div class="toggle-wrap" style="margin-left: 14%">
-                                <div class="style-single">
-                        <p style="text-transform: capitalize">Location: <?php echo $location; ?></p>
-                        <p><a href="contact_preson.php?id=<?php echo $id; ?>">Contact Person</a> </p>
-
-                    </div>
-                </div>
-                <br/>
-
-
-        </div>
-
-        <?php
-
-        }
-        ?>
-        <!--list of found items end -->
-
-
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- List of lost and found end -->
         </div>
 
     </main>
