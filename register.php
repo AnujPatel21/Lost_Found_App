@@ -23,9 +23,8 @@ session_start();
 
 </head>
 <?php
-
-$conn=mysql_connect('localhost','root','') or die(mysql_errno());
-$db=mysql_select_db('lostandfound',$conn) or die('Database doesnot exist');
+$conn=mysqli_connect('127.0.0.1','root','mysql');
+$db=mysqli_select_db($conn, 'cloud') or die('Database doesnot exist');
 if(isset($_POST['username'])){
 
 
@@ -36,7 +35,7 @@ if(isset($_POST['username'])){
     $re_pass = $_POST['re_password'];
     if($pass === $re_pass){
         $sql = "insert into user (username, email, password, re_pass) VALUES ('$user','$email','$pass','$re_pass')";
-        $result = mysql_query($sql);
+        $result = mysqli_query($conn, $sql);
         if($result == 1){
             echo "<script language='javascript' type='text/javascript'>document.location.href ='index.php';</script>";
         }

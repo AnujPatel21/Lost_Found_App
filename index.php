@@ -64,8 +64,8 @@
     <!-- slider end -->
 </head>
 <?php
-$conn=mysqli_connect('localhost','root','');
-$db=mysqli_select_db($conn, 'lostandfound') or die('Database doesnot exist');
+$conn=mysqli_connect('127.0.0.1','root','mysql');
+$db=mysqli_select_db($conn, 'cloud') or die('Database doesnot exist');
 ?>
 <body class="o_connected_user">
 

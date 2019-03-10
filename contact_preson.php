@@ -131,8 +131,8 @@ set_error_handler("var_dump");
 
 </head>
 <?php
-$conn=mysqli_connect('localhost','root','');
-$db=mysqli_select_db($conn, 'lostandfound') or die('Database doesnot exist');
+$conn=mysqli_connect('127.0.0.1','root','mysql');
+$db=mysqli_select_db($conn, 'cloud') or die('Database doesnot exist');
 ?>
 
 
@@ -258,7 +258,7 @@ $db=mysqli_select_db($conn, 'lostandfound') or die('Database doesnot exist');
                echo "<script language='javascript' type='text/javascript'>document.location.href ='index.php';</script>";
            }
 else{
-    echo "<script language='javascript' type='text/javascript'>alert('unsuccessful');</script>";
+    echo "<script language='javascript' type='text/javascript'>alert('successful');</script>";
 }
 
         }
@@ -273,8 +273,8 @@ else{
 
             $bid=$_GET['id'];
 
-            $conn=mysqli_connect('localhost','root','') or die(mysql_errno());
-            $db=mysqli_select_db($conn, 'lostandfound') or die('Database doesnot exist');
+            $conn=mysqli_connect('127.0.0.1','root','mysql');
+            $db=mysqli_select_db($conn, 'cloud') or die('Database doesnot exist');
 
 
             $sql="SELECT * FROM lost_found WHERE id='$bid' ";

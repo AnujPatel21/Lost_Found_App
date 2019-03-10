@@ -23,9 +23,8 @@ session_start();
 
 </head>
 <?php
-
-$conn=mysql_connect('localhost','root','') or die(mysql_errno());
-$db=mysql_select_db('lostandfound',$conn) or die('Database doesnot exist');
+$conn=mysqli_connect('127.0.0.1','root','mysql');
+$db=mysqli_select_db($conn, 'cloud') or die('Database doesnot exist');
 if(isset($_POST['username'])){
 
 
@@ -33,9 +32,9 @@ if(isset($_POST['username'])){
     $user = $_POST['username'];
     $pass = $_POST['password'];
     $sql="SELECT * FROM user WHERE username='".$user."' and password='".$pass."' LIMIT 1";
-    $result=mysql_query($sql);
-    $row=mysql_fetch_array($result);
-    $count=mysql_num_rows($result);
+    $result=mysqli_query($conn, $sql);
+    $row=mysqli_fetch_array($result);
+    $count=mysqli_num_rows($result);
     $id=$row['ID'];
     $user_name = $row['username'];
     $password = $row['password'];
