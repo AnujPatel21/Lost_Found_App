@@ -26,3 +26,21 @@ Lost and Found App for California State University Los-Angeles
 Before you begin, make sure that your local system is properly configured for Symfony2. To do this, execute the following:
 
 ```$ php app/check.php```
+
+If you got any warnings or recommendations, fix them before moving on.
+
+`Setting up permissions for directories app/cache/ and app/logs`
+
+- $ HTTPDUSER=`ps aux | grep -E '[a]pache|[h]ttpd|[_]www|[w]ww-data|[n]ginx' | grep -v root | head -1 | cut -d\  -f1`
+- $ sudo setfacl -R -m u:"$HTTPDUSER":rwX -m u:`whoami`:rwX app/cache app/logs
+- $ sudo setfacl -dR -m u:"$HTTPDUSER":rwX -m u:`whoami`:rwX app/cache app/logs
+
+`Change DBAL settings, create DB, update it and load fixtures`
+
+Change DBAL setting if your need in `app/config/config.yml`, `app/config/config_dev.yml` or `app/config/config_test.yml`. After that execute the following:
+
+- $ ./console doctrine:database:create
+- $ ./console doctrine:migrations:migrate
+- $ ./console doctrine:fixtures:load
+
+You can set test environment for command if you add --env=test to it.
